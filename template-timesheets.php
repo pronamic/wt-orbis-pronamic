@@ -81,9 +81,9 @@ $query_budgets = $wpdb->prepare(
 		project.number_seconds - IFNULL( SUM( registration.number_seconds ), 0 ) AS seconds_available,
 		project.invoicable 
 	FROM
-		orbis_projects AS project
+		$wpdb->orbis_projects AS project
 			LEFT JOIN
-		orbis_hours_registration AS registration
+		$wpdb->orbis_timesheets AS registration
 				ON (
 					project.id = registration.project_id
 						AND
@@ -106,21 +106,21 @@ $query_hours =  "
 		client.id AS client_id,
 		client.name AS client_name,
 		client.post_id AS client_post_id,
-		person.first_name AS user_name,
+		user.display_name AS user_name,
 		hr.date AS date,
 		hr.description AS description,
 		hr.number_seconds AS number_seconds
 	FROM
-		orbis_hours_registration AS hr
+		$wpdb->orbis_timesheets AS hr
 			LEFT JOIN
-		orbis_companies AS client
+		$wpdb->orbis_companies AS client
 				ON hr.company_id = client.id
 			LEFT JOIN
-		orbis_projects AS project
+		$wpdb->orbis_projects AS project
 				ON hr.project_id = project.id
 			LEFT JOIN
-		orbis_persons AS person
-				ON hr.user_id = person.id
+		$wpdb->users AS user
+				ON hr.user_id = user.ID
 	$query
 ";
 
@@ -203,26 +203,16 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 	
 		<div class="span4">
 			<div class="pull-right">
-				<?php 
-				
-				$users = array(
-					 1 => 'Jelke Boonstra',
-					 3 => 'Leo Oosterloo',
-					 4 => 'Jan Lammert Sijtsema',
-					 5 => 'Karel-Jan Tolsma',
-					 6 => 'Remco Tolsma',
-					24 => 'Martijn Duker',
-					25 => 'Stefan Boonstra',
-					26 => 'Leon Rowland',
-				);
-				
+				<?php
+
+				wp_dropdown_users( array(
+					'name'             => 'user',
+					'selected'         => filter_input( INPUT_GET, 'user', FILTER_SANITIZE_STRING ),
+					'show_option_none' => __( '&mdash; All Users &mdash;', 'orbis' ),
+					'class'            => 'form-control',
+				) );
+
 				?>
-				<select name="user" id="userSelect">
-					<option value="">Alle gebruikers</option>
-					<?php foreach ( $users as $id => $name ) : ?>
-						<option value="<?php echo $id; ?>" <?php selected( $id, $user ); ?>><?php echo $name; ?></option>
-					<?php endforeach; ?>
-				</select>
 
 				<button type="submit" class="btn">Filter</button>
 			</div>
