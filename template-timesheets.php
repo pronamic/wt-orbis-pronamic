@@ -22,7 +22,7 @@ function orbis_format_timestamps( array $timestamps, $format ) {
 // This week
 $week_this = array(
 	'start_date' => strtotime( 'sunday this week -1 week' ),
-	'end_date'   => strtotime( 'sunday this week' )
+	'end_date'   => strtotime( 'sunday this week' ),
 );
 
 // Start date
@@ -46,12 +46,12 @@ $step = max( $end_date - $start_date, ( 3600 * 12 ) );
 
 $previous = array(
 	'start_date' => $start_date - $step,
-	'end_date'   => $end_date - $step
+	'end_date'   => $end_date - $step,
 );
 
 $next = array(
 	'start_date' => $start_date + $step,
-	'end_date'   => $end_date + $step
+	'end_date'   => $end_date + $step,
 );
 
 // Inputs
