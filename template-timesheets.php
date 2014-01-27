@@ -185,15 +185,15 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 <form class="form-inline" method="get" action="">
 	<div class="row">
-		<div class="span2">
+		<div class="col-md-2">
 			<div class="btn-group">
-				<a class="btn"href="<?php echo $url_previous; ?>">&lt;</a>
-				<a class="btn"href="<?php echo $url_next; ?>">&gt;</a>
-				<a class="btn"href="<?php echo $url_week_this; ?>">Deze week</a>
+				<a class="btn btn-default" href="<?php echo $url_previous; ?>">&lt;</a>
+				<a class="btn btn-default" href="<?php echo $url_next; ?>">&gt;</a>
+				<a class="btn btn-default" href="<?php echo $url_week_this; ?>">Deze week</a>
 			</div>
 		</div>
 	
-		<div class="span6">			
+		<div class="col-md-6">			
 			View report from
 			<input type="text" name="start_date" class="input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $start_date ); ?>"> to
 			<input type="text" name="end_date" class="input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $end_date ); ?>">
@@ -201,7 +201,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 			<button type="submit" class="btn">Filter</button>
 		</div>
 	
-		<div class="span4">
+		<div class="col-md-4">
 			<div class="pull-right">
 				<?php
 
@@ -223,7 +223,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 <hr>
 
 <div class="row">
-	<div class="span12">
+	<div class="col-md-12">
 		<h1><?php echo round( $total ) . '%'; ?> <span style="font-size: 16px; font-weight: normal;">of the hours are billable</span> </h1>
 
 		<div class="progress progress-striped active">
@@ -233,22 +233,22 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 </div>
 
 <div class="row">
-	<div class="span3">
+	<div class="col-md-3">
 		<p><?php _e( 'Total tracked hours', 'orbis' ); ?></p>
 		<h1><?php echo round( $total_hours, 2 ); ?></h1>
 	</div>
 
-	<div class="span3">
+	<div class="col-md-3">
 		<p><?php _e( 'Billabale hours', 'orbis' ); ?></p>
 		<h1><?php echo round( $billable_hours, 2 ); ?></h1>
 	</div>
 
-	<div class="span3">
+	<div class="col-md-3">
 		<p><?php _e( 'Unbillabale hours', 'orbis' ); ?></p>
 		<h1><?php echo round( $unbillable_hours, 2 ); ?></h1>
 	</div>
 
-	<div class="span3">
+	<div class="col-md-3">
 		<p><?php _e( 'Billable Amount', 'orbis' ); ?></p>
 		<h1><?php echo orbis_price( $amount ); ?></h1>
 	</div>
