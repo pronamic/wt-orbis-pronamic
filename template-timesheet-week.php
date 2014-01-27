@@ -19,15 +19,20 @@ function orbis_format_timestamps( array $timestamps, $format ) {
 	return $dates;
 }
 
-$users = array(
-	1  => 'Jelke Boonstra',
-	3  => 'Leo Oosterloo',
-	4  => 'Jan Lammert Sijtsema',
-	5  => 'Karel-Jan Tolsma',
-	6  => 'Remco Tolsma',
-	24 => 'Martijn Duker',
-	26 => 'Leon Rowland'
+$include = array(
+	4, // Jelke
+	5, // Jan Lammert
+	10, // Leon
+	7, // Leo
+	8, // Duker
+	2, // Remco
+	9, // Stefan
+	3, // Karel-Jan
 );
+
+$users = get_users( array(
+	'include' => $include,
+) );
 
 // This week
 $week_this = strtotime( 'previous Sunday' );
@@ -50,11 +55,11 @@ $days = array(
 	7 => strtotime( '+7 day', $date )
 );
 
-$query = '
+$query = "
 	SELECT
 		SUM(number_seconds)
 	FROM
-		orbis_hours_registration
+		$wpdb->orbis_timesheets
 	WHERE
 		user_id = %d
 			AND
@@ -62,7 +67,7 @@ $query = '
 	GROUP BY
 		user_id
 	;
-';
+";
 
 $previous = strtotime( '-1 week', $date );
 $next     = strtotime( '+1 week', $date );
@@ -75,11 +80,11 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 
 <form class="form-inline" method="get" action="">
 	<div class="row">
-		<div class="span2">
+		<div class="col-md-2">
 			<div class="btn-group">
-				<a class="btn"href="<?php echo $url_previous; ?>">&lt;</a>
-				<a class="btn"href="<?php echo $url_next; ?>">&gt;</a>
-				<a class="btn"href="<?php echo $url_week_this; ?>">Deze week</a>
+				<a class="btn btn-default" href="<?php echo $url_previous; ?>">&lt;</a>
+				<a class="btn btn-default" href="<?php echo $url_next; ?>">&gt;</a>
+				<a class="btn btn-default" href="<?php echo $url_week_this; ?>">Deze week</a>
 			</div>
 		</div>
 	</div>
@@ -102,13 +107,13 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ( $users as $user_id => $user_name ): ?>
+		<?php foreach ( $users as $user ): ?>
 		
 			<tr>
 				<td>
 					<?php 
 
-					echo $user_name;
+					echo $user->display_name;
 
 					$total = 0;
 
@@ -119,7 +124,7 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 
 					<?php 
 					
-					$q = $wpdb->prepare( $query, $user_id, date( 'Y-m-d', $day ) );
+					$q = $wpdb->prepare( $query, $user->ID, date( 'Y-m-d', $day ) );
 
 					$seconds = $wpdb->get_var( $q );
 					
@@ -128,8 +133,8 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 					$url = add_query_arg( array(
 						'start_date' => date( 'Y-m-d', $day ),
 						'end_date'   => date( 'Y-m-d', $day ),
-						'user'       => $user_id
-					), 'http://in.pronamic.nl/werk/' );
+						'user'       => $user->ID,
+					), 'http://in.pronamic.nl/rapporten/werk/' );
 					
 					?>
 					<td>
