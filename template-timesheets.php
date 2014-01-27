@@ -195,10 +195,15 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 	
 		<div class="col-md-6">			
 			View report from
-			<input type="text" name="start_date" class="input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $start_date ); ?>"> to
-			<input type="text" name="end_date" class="input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $end_date ); ?>">
+			<div class="form-group">
+				<input type="text" name="start_date" class="form-control input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $start_date ); ?>">
+			</div>
+			to
+			<div class="form-group">
+				<input type="text" name="end_date" class="form-control input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $end_date ); ?>">
+			</div>
 	
-			<button type="submit" class="btn">Filter</button>
+			<button type="submit" class="btn btn-default">Filter</button>
 		</div>
 	
 		<div class="col-md-4">
@@ -214,7 +219,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 				?>
 
-				<button type="submit" class="btn">Filter</button>
+				<button type="submit" class="btn btn-default">Filter</button>
 			</div>
 		</div>
 	</div>
@@ -227,7 +232,9 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 		<h1><?php echo round( $total ) . '%'; ?> <span style="font-size: 16px; font-weight: normal;">of the hours are billable</span> </h1>
 
 		<div class="progress progress-striped active">
-			<div class="bar" style="width: <?php echo round( $total ) . '%'; ?>;"></div>
+			<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo round( $total ); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round( $total ) . '%'; ?>;">
+				<span class="sr-only"><?php echo round( $total ) . '%'; ?> Complete</span>
+			</div>
 		</div>
 	</div>
 </div>
