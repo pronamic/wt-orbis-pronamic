@@ -66,7 +66,7 @@ $results = $wpdb->get_results('
 // New array
 $projects = array();
 
-foreach ($results as $row ) : if ( $row->registration_time > $row->project_time ) :
+foreach ( $results as $row ) : if ( $row->registration_time > $row->project_time ) :
 
 $projects[$row->id]['company_name'] = $row->company_name; 
 $projects[$row->id]['name'] = $row->name; 
@@ -81,7 +81,7 @@ endif; endforeach;
 ?> 
 
 <div class="row">
-	<div class="span6">
+	<div class="col-md-6">
 		<?php
 
 		aasort( $projects, 'over_budget' );
@@ -118,7 +118,7 @@ endif; endforeach;
 		</div>
 	</div>
 
-	<div class="span6">
+	<div class="col-md-6">
 		<?php
 
 		aasort( $projects, 'hours_over_budget' );
