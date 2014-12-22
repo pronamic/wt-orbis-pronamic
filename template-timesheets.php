@@ -210,11 +210,18 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 			<div class="pull-right">
 				<?php
 
+				$users = get_users( array(
+					'fields'     => 'ids',
+					'meta_key'   => '_orbis_user',
+					'meta_value' => 'true',
+				) );
+
 				wp_dropdown_users( array(
 					'name'             => 'user',
 					'selected'         => filter_input( INPUT_GET, 'user', FILTER_SANITIZE_STRING ),
-					'show_option_none' => __( '&mdash; All Users &mdash;', 'orbis' ),
+					'show_option_none' => __( '&mdash; All Users &mdash;', 'orbis_pronamic' ),
 					'class'            => 'form-control',
+					'include'          => $users,
 				) );
 
 				?>

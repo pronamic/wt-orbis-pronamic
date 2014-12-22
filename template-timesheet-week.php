@@ -19,19 +19,9 @@ function orbis_format_timestamps( array $timestamps, $format ) {
 	return $dates;
 }
 
-$include = array(
-	4, // Jelke
-	5, // Jan Lammert
-	10, // Leon
-	7, // Leo
-	8, // Duker
-	2, // Remco
-	9, // Stefan
-	3, // Karel-Jan
-);
-
 $users = get_users( array(
-	'include' => $include,
+	'meta_key'   => '_orbis_user',
+	'meta_value' => 'true',
 ) );
 
 // This week
