@@ -13,5 +13,22 @@ Tags:             pronamic, clean
 @import url("../orbis/style.css");
 
 /**
- * Global
+ * WooCommerce
  */
+.woocommerce ul.products li.product, 
+.woocommerce-page ul.products li.product {
+	background: #fff;
+
+	border: 1px solid #c3c3c3;
+	
+	padding: 20px;
+
+    border-radius: 4px;
+
+    box-shadow: 1px 1px 3px #e7e7e7;
+}
+
+.woocommerce ul.products li.product h3, 
+.woocommerce-page ul.products li.product h3 {
+	min-height: 50px;
+}
