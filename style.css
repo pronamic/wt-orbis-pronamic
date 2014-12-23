@@ -1,13 +1,19 @@
 /*
-Theme Name:       Orbis Pronamic
-Description:      The Orbis child theme for Pronamic.
-Author:           Pronamic
-Author URI:       http://www.pronamic.eu/
-Template:         orbis
-Version:          1.0
-License: 		  GNU General Public License
-License URI:      http://www.gnu.org/licenses/gpl.html
-Tags:             pronamic, clean
+Theme Name: Orbis Pronamic
+Description: The Orbis child theme for Pronamic.
+
+Author: Pronamic
+Author URI: http://www.pronamic.eu/
+Template: orbis
+
+Version: 1.0.0
+
+License: GNU General Public License
+License URI: http://www.gnu.org/licenses/gpl.html
+
+Tags: orbis, pronamic, clean
+
+Text Domain: orbis_pronamic
 */
 
 @import url("../orbis/style.css");
