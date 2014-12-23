@@ -49,10 +49,10 @@ $results = $wpdb->get_results( $query );
 <table class="table table-striped table-bordered panel">
 	<thead>
 		<tr>
-			<th><?php _e( 'Company', 'orbis' ); ?></th>
-			<th><?php _e( 'Subscription', 'orbis' ); ?></th>
-			<th><?php _e( 'Name', 'orbis' ); ?></th>
-			<th><?php _e( 'Time', 'orbis' ); ?></th>
+			<th><?php _e( 'Company', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Subscription', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Name', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>

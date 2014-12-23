@@ -248,22 +248,22 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 <div class="row">
 	<div class="col-md-3">
-		<p><?php _e( 'Total tracked hours', 'orbis' ); ?></p>
+		<p><?php _e( 'Total tracked hours', 'orbis_pronamic' ); ?></p>
 		<h1><?php echo round( $total_hours, 2 ); ?></h1>
 	</div>
 
 	<div class="col-md-3">
-		<p><?php _e( 'Billabale hours', 'orbis' ); ?></p>
+		<p><?php _e( 'Billabale hours', 'orbis_pronamic' ); ?></p>
 		<h1><?php echo round( $billable_hours, 2 ); ?></h1>
 	</div>
 
 	<div class="col-md-3">
-		<p><?php _e( 'Unbillabale hours', 'orbis' ); ?></p>
+		<p><?php _e( 'Unbillabale hours', 'orbis_pronamic' ); ?></p>
 		<h1><?php echo round( $unbillable_hours, 2 ); ?></h1>
 	</div>
 
 	<div class="col-md-3">
-		<p><?php _e( 'Billable Amount', 'orbis' ); ?></p>
+		<p><?php _e( 'Billable Amount', 'orbis_pronamic' ); ?></p>
 		<h1><?php echo orbis_price( $amount ); ?></h1>
 	</div>
 </div>
@@ -273,12 +273,12 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 <table class="table table-striped table-bordered panel">
 	<thead>
 		<tr>
-			<th><?php _e( 'User', 'orbis' ); ?></th>
-			<th><?php _e( 'Client', 'orbis' ); ?></th>
-			<th><?php _e( 'Project', 'orbis' ); ?></th>
-			<th><?php _e( 'Description', 'orbis' ); ?></th>
-			<th><?php _e( 'Time', 'orbis' ); ?></th>
-			<th><?php _e( 'Total', 'orbis' ); ?></th>
+			<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Client', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Project', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Total', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -315,7 +315,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 					<?php 
 					
 					$title = sprintf(
-						__( '%s billable, %s unbillable', 'orbis' ),
+						__( '%s billable, %s unbillable', 'orbis_pronamic' ),
 						orbis_time( $row->billable_seconds ),
 						orbis_time( $row->unbillable_seconds )
 					);

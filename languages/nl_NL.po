@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2014-12-23 07:56:30+00:00\n"
-"PO-Revision-Date: 2014-12-23 08:56+0100\n"
+"POT-Creation-Date: 2014-12-23 08:05:49+00:00\n"
+"PO-Revision-Date: 2014-12-23 09:06+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -56,8 +56,7 @@ msgid "User"
 msgstr "Gebruiker"
 
 #: orbis_subscription_timesheet.php:43 single-orbis_subscription.php:18
-#: single-orbis_subscripton.php:18 template-subscription-timesheets.php:117
-#: template-timesheets.php:279
+#: template-subscription-timesheets.php:117 template-timesheets.php:279
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -67,23 +66,23 @@ msgstr "Beschrijving"
 msgid "Time"
 msgstr "Tijd"
 
-#: single-orbis_subscription.php:46 single-orbis_subscripton.php:46
+#: single-orbis_subscription.php:46
 msgid "Additional Information"
 msgstr "Aanvullende informatie"
 
-#: single-orbis_subscription.php:51 single-orbis_subscripton.php:51
+#: single-orbis_subscription.php:51
 msgid "Posted on"
 msgstr "Geplaatst op"
 
-#: single-orbis_subscription.php:54 single-orbis_subscripton.php:54
+#: single-orbis_subscription.php:54
 msgid "Posted by"
 msgstr "Aangemaakt door"
 
-#: single-orbis_subscription.php:57 single-orbis_subscripton.php:57
+#: single-orbis_subscription.php:57
 msgid "Actions"
 msgstr "Acties"
 
-#: single-orbis_subscription.php:58 single-orbis_subscripton.php:58
+#: single-orbis_subscription.php:58
 msgid "Edit"
 msgstr "Bewerken"
 

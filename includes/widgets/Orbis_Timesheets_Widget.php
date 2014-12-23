@@ -17,7 +17,7 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 	 * Constructs and initializes this widget
 	 */
 	public function Orbis_Timesheets_Widget() {
-		parent::WP_Widget( 'orbis-timesheets', __( 'Orbis Timesheets', 'orbis' ) );
+		parent::WP_Widget( 'orbis-timesheets', __( 'Orbis Timesheets', 'orbis_pronamic' ) );
 	}
 
 	function widget( $args, $instance ) {
@@ -210,17 +210,17 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 
 			<div class="row">
 				<div class="col-md-4">
-					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Total tracked hours', 'orbis' ); ?></p>
+					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Total tracked hours', 'orbis_pronamic' ); ?></p>
 					<p class="h3"><?php echo round( $total_hours, 2 ); ?></p>
 				</div>
 
 				<div class="col-md-4">
-					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Billabale hours', 'orbis' ); ?></p>
+					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Billabale hours', 'orbis_pronamic' ); ?></p>
 					<p class="h3"><?php echo round( $billable_hours, 2 ); ?></p>
 				</div>
 
 				<div class="col-md-4">
-					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Unbillabale hours', 'orbis' ); ?></p>
+					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Unbillabale hours', 'orbis_pronamic' ); ?></p>
 					<p class="h3"><?php echo round( $unbillable_hours, 2 ); ?></p>
 				</div>
 			</div>
@@ -246,7 +246,7 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>">
-				<?php _e( 'Title:', 'orbis' ); ?>
+				<?php _e( 'Title:', 'orbis_pronamic' ); ?>
 			</label>
 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />

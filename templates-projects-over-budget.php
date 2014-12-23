@@ -15,7 +15,7 @@ get_header(); ?>
 
 <div class="page-header">
 	<h1>
-		Projects over budget <small><?php _e( 'This list should be empty dude', 'orbis' ); ?></small>
+		Projects over budget <small><?php _e( 'This list should be empty dude', 'orbis_pronamic' ); ?></small>
 	</h1>
 </div>
 
@@ -96,8 +96,8 @@ endif; endforeach;
 			<table class="table table-striped table-bordered table-condense">
 				<thead>
 					<tr>
-						<th><?php _e('Project', 'orbis'); ?></th>
-						<th><?php _e('Over budget', 'orbis'); ?></th>
+						<th><?php _e( 'Project', 'orbis_pronamic' ); ?></th>
+						<th><?php _e( 'Over budget', 'orbis_pronamic' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -133,9 +133,9 @@ endif; endforeach;
 			<table class="table table-striped table-bordered table-condense">
 				<thead>
 					<tr>
-						<th><?php _e( 'Project', 'orbis' ); ?></th>
-						<th><?php _e( 'Aantal uren over budget', 'orbis' ); ?></th>
-						<th><?php _e( 'Kosten', 'orbis' ); ?></th>
+						<th><?php _e( 'Project', 'orbis_pronamic' ); ?></th>
+						<th><?php _e( 'Aantal uren over budget', 'orbis_pronamic' ); ?></th>
+						<th><?php _e( 'Kosten', 'orbis_pronamic' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>

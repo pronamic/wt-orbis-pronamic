@@ -38,10 +38,10 @@ $results = $wpdb->get_results( $query );
 	<table class="table table-striped table-bordered panel">
 		<thead>
 			<tr>
-				<th><?php _e( 'Date', 'orbis' ); ?></th>
-				<th><?php _e( 'User', 'orbis' ); ?></th>
-				<th><?php _e( 'Description', 'orbis' ); ?></th>
-				<th><?php _e( 'Time', 'orbis' ); ?></th>
+				<th><?php _e( 'Date', 'orbis_pronamic' ); ?></th>
+				<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
+				<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
+				<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>

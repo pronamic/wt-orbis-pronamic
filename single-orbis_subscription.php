@@ -15,7 +15,7 @@
 
 				<div class="panel">
 					<header>
-						<h3><?php _e( 'Description', 'orbis' ); ?></h3>
+						<h3><?php _e( 'Description', 'orbis_pronamic' ); ?></h3>
 					</header>
 
 					<div class="content clearfix">
@@ -43,19 +43,19 @@
 
 				<div class="panel">
 					<header>
-						<h3><?php _e( 'Additional Information', 'orbis' ); ?></h3>
+						<h3><?php _e( 'Additional Information', 'orbis_pronamic' ); ?></h3>
 					</header>
 
 					<div class="content">
 						<dl>
-							<dt><?php _e( 'Posted on', 'orbis' ); ?></dt>
+							<dt><?php _e( 'Posted on', 'orbis_pronamic' ); ?></dt>
 							<dd><?php echo get_the_date(); ?></dd>
 
-							<dt><?php _e( 'Posted by', 'orbis' ); ?></dt>
+							<dt><?php _e( 'Posted by', 'orbis_pronamic' ); ?></dt>
 							<dd><?php echo get_the_author(); ?></dd>
 
-							<dt><?php _e( 'Actions', 'orbis' ); ?></dt>
-							<dd><?php edit_post_link( __( 'Edit', 'orbis' ) ); ?></dd>
+							<dt><?php _e( 'Actions', 'orbis_pronamic' ); ?></dt>
+							<dd><?php edit_post_link( __( 'Edit', 'orbis_pronamic' ) ); ?></dd>
 						</dl>
 					</div>
 				</div>

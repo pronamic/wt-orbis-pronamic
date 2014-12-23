@@ -104,19 +104,19 @@ $amount = $billable_hours * 75;
 
 ?>
 
-<h1><?php echo round( $total_hours, 2 ); ?> <small><?php _e( 'Total tracked hours', 'orbis' ); ?></small></h1>
+<h1><?php echo round( $total_hours, 2 ); ?> <small><?php _e( 'Total tracked hours', 'orbis_pronamic' ); ?></small></h1>
 
 <hr />
 
 <table class="table table-striped table-bordered panel">
 	<thead>
 		<tr>
-			<th><?php _e( 'User', 'orbis' ); ?></th>
-			<th><?php _e( 'Client', 'orbis' ); ?></th>
-			<th><?php _e( 'Project', 'orbis' ); ?></th>
-			<th><?php _e( 'Description', 'orbis' ); ?></th>
-			<th><?php _e( 'Time', 'orbis' ); ?></th>
-			<th><?php _e( 'Total', 'orbis' ); ?></th>
+			<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Client', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Project', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Total', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -153,7 +153,7 @@ $amount = $billable_hours * 75;
 					<?php 
 					
 					$title = sprintf(
-						__( '%s billable, %s unbillable', 'orbis' ),
+						__( '%s billable, %s unbillable', 'orbis_pronamic' ),
 						orbis_time( $row->billable_seconds ),
 						orbis_time( $row->unbillable_seconds )
 					);

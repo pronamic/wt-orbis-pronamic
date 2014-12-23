@@ -22,7 +22,7 @@ function orbis_pronamic_widgets_init() {
 	register_widget( 'Orbis_Timesheets_Widget' );
 
 	register_sidebar( array(
-		'name'          => __( 'Shop Widget Area', 'orbis' ),
+		'name'          => __( 'Shop Widget Area', 'orbis_pronamic' ),
 		'id'            => 'shop-widget',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',

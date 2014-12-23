@@ -85,7 +85,7 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
-			<th><?php _e( 'User', 'orbis' ); ?></th>
+			<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
 
 			<?php foreach ( $days as $day ): ?>
 
@@ -93,7 +93,7 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 			
 			<?php endforeach; ?>
 
-			<th><?php _e( 'Total', 'orbis' ); ?></th>
+			<th><?php _e( 'Total', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
