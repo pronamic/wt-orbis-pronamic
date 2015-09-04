@@ -1,14 +1,14 @@
-# Copyright (C) 2014 Pronamic
+# Copyright (C) 2015 Pronamic
 # This file is distributed under the GNU General Public License.
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2014-12-23 08:05:49+00:00\n"
+"POT-Creation-Date: 2015-09-04 13:16:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.4.9\n"
@@ -55,6 +55,22 @@ msgstr ""
 #: orbis_subscription_timesheet.php:44 template-subscription-timesheets.php:118
 #: template-subscriptions-top.php:55 template-timesheets.php:280
 msgid "Time"
+msgstr ""
+
+#: page-templates/subscriptions-twinfield.php:136
+msgid "Invoice created by Orbis on %s."
+msgstr ""
+
+#: page-templates/subscriptions-twinfield.php:215
+msgid "Orbis ID: %s"
+msgstr ""
+
+#: page-templates/subscriptions-twinfield.php:256
+msgid "Article"
+msgstr ""
+
+#: page-templates/subscriptions-twinfield.php:264
+msgid "Subarticle"
 msgstr ""
 
 #: single-orbis_subscription.php:46
@@ -173,4 +189,8 @@ msgstr ""
 
 #. Template Name of the plugin/theme
 msgid "Registrar"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Subscriptions Twinfield"
 msgstr ""
