@@ -3,12 +3,6 @@
 <?php while ( have_posts() ) : the_post(); ?>
 
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<div class="page-header">
-			<h1>
-				<?php the_title(); ?>
-			</h1>
-		</div>
-
 		<div class="row">
 			<div class="col-md-8">
 				<?php do_action( 'orbis_before_main_content' ); ?>
