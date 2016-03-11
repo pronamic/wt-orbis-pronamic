@@ -67,7 +67,7 @@ add_action( 'template_redirect', 'orbis_woocommerce_grid' );
  */
 function orbis_checklist_shortcode( $atts ) {
 	$atts = shortcode_atts( array(
-		'number' => 5,
+		'number' => 50,
 		'cols'   => 3,
 	), $atts );
 
