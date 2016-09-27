@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template Name: Subscription Top
+ * Template Name: Projects Top
  */
 
 get_header();
@@ -25,30 +25,24 @@ if ( ! empty( $start ) ) {
 // Query
 $query =  "
 	SELECT
-		subscription.id AS subscription_id,
-		subscription.post_id AS subscription_post_id,
+		project.id AS project_id,
+		project.post_id AS project_post_id,
+		project.name AS project_name,
 		company.name AS company_name,
 		company.post_id AS company_post_id,
-		product.name AS product_name,
-		subscription.name AS subscription_name,
 		SUM( timesheet.number_seconds ) AS subscription_seconds
 	FROM
-		$wpdb->orbis_subscriptions AS subscription
-			LEFT JOIN
-		$wpdb->orbis_subscription_products AS product
-				ON subscription.type_id = product.id
+		$wpdb->orbis_projects AS project
 			LEFT JOIN
 		$wpdb->orbis_timesheets AS timesheet
-				ON subscription.id = timesheet.subscription_id
+				ON project.id = timesheet.project_id
 			LEFT JOIN
 		$wpdb->orbis_companies AS company
-				ON subscription.company_id = company.id
+				ON project.principal_id = company.id
 	WHERE
-		subscription.cancel_date IS NULL
-			AND
 		%s
 	GROUP BY
-		subscription.id
+		project.id
 	ORDER BY
 		subscription_seconds DESC
 	LIMIT
@@ -110,8 +104,7 @@ $results = $wpdb->get_results( $query );
 	<thead>
 		<tr>
 			<th><?php _e( 'Company', 'orbis_pronamic' ); ?></th>
-			<th><?php _e( 'Subscription', 'orbis_pronamic' ); ?></th>
-			<th><?php _e( 'Name', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Project', 'orbis_pronamic' ); ?></th>
 			<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
@@ -126,11 +119,8 @@ $results = $wpdb->get_results( $query );
 					</a>
 				</td>
 				<td>
-					<?php echo $row->product_name; ?>
-				</td>
-				<td>
-					<a href="<?php echo add_query_arg( 'p', $row->subscription_post_id, home_url( '/' ) ); ?>">
-						<?php echo $row->subscription_name; ?>
+					<a href="<?php echo add_query_arg( 'p', $row->project_post_id, home_url( '/' ) ); ?>">
+						<?php echo $row->project_name; ?>
 					</a>
 				</td>
 				<td>

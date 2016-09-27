@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template Name: Subscription Top
+ * Template Name: Subscriptions Invoices
  */
 
 get_header();
@@ -16,43 +16,40 @@ $start = empty( $start ) ? '-1 week' : $start;
 
 if ( ! empty( $start ) ) {
 	$where = $wpdb->prepare(
-		'timesheet.date BETWEEN %s AND %s',
+		'create_date BETWEEN %s AND %s',
 		date( 'Y-m-d', strtotime( $start ) ),
-		date( 'Y-m-d' )
+		date( 'Y-m-d', strtotime( 'tomorrow' ) )
 	);
 }
 
 // Query
 $query =  "
 	SELECT
-		subscription.id AS subscription_id,
-		subscription.post_id AS subscription_post_id,
+		si.id AS id,
 		company.name AS company_name,
 		company.post_id AS company_post_id,
 		product.name AS product_name,
+		product.price AS product_price,
 		subscription.name AS subscription_name,
-		SUM( timesheet.number_seconds ) AS subscription_seconds
+		subscription.post_id AS subscription_post_id,
+		si.start_date AS start_date,
+		si.end_date AS end_date,
+		si.invoice_number AS invoice_number
 	FROM
-		$wpdb->orbis_subscriptions AS subscription
+		orbis_subscriptions_invoices AS si
 			LEFT JOIN
-		$wpdb->orbis_subscription_products AS product
+		orbis_subscriptions AS subscription
+				ON si.subscription_id = subscription.id
+			LEFT JOIN
+		orbis_subscription_types AS product
 				ON subscription.type_id = product.id
 			LEFT JOIN
-		$wpdb->orbis_timesheets AS timesheet
-				ON subscription.id = timesheet.subscription_id
-			LEFT JOIN
-		$wpdb->orbis_companies AS company
+		orbis_companies AS company
 				ON subscription.company_id = company.id
 	WHERE
-		subscription.cancel_date IS NULL
-			AND
 		%s
-	GROUP BY
-		subscription.id
 	ORDER BY
-		subscription_seconds DESC
-	LIMIT
-		0, 100
+		start_date ASC
 	;
 ";
 
@@ -110,11 +107,35 @@ $results = $wpdb->get_results( $query );
 	<thead>
 		<tr>
 			<th><?php _e( 'Company', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Product', 'orbis_pronamic' ); ?></th>
 			<th><?php _e( 'Subscription', 'orbis_pronamic' ); ?></th>
-			<th><?php _e( 'Name', 'orbis_pronamic' ); ?></th>
-			<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Start Date', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'End Date', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Invoice Number', 'orbis_pronamic' ); ?></th>
+			<th><?php _e( 'Price', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
+
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<?php
+
+				$total = array_sum( wp_list_pluck( $results, 'product_price' ) );
+
+				echo orbis_price( $total );
+
+				?>
+			</td>
+		</tr>
+	</tfoot>
+
 	<tbody>
 
 		<?php foreach( $results as $row ) : ?>
@@ -134,7 +155,16 @@ $results = $wpdb->get_results( $query );
 					</a>
 				</td>
 				<td>
-					<?php echo orbis_time( $row->subscription_seconds ); ?>
+					<?php echo $row->start_date; ?>
+				</td>
+				<td>
+					<?php echo $row->end_date; ?>
+				</td>
+				<td>
+					<?php echo $row->invoice_number; ?>
+				</td>
+				<td>
+					<?php echo orbis_price( $row->product_price ); ?>
 				</td>
 			</tr>
 

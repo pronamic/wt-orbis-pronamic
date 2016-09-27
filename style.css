@@ -4,7 +4,7 @@ Description: The Orbis child theme for Pronamic.
 
 Author: Pronamic
 Author URI: http://www.pronamic.eu/
-Template: orbis
+Template: orbis2
 
 Version: 1.0.0
 
@@ -16,7 +16,7 @@ Tags: orbis, pronamic, clean
 Text Domain: orbis_pronamic
 */
 
-@import url("../orbis/style.css");
+@import url("../orbis2/style.css");
 
 /**
  * WooCommerce

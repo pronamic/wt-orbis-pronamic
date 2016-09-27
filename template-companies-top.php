@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template Name: Subscription Top
+ * Template Name: Companies Top
  */
 
 get_header();
@@ -25,30 +25,19 @@ if ( ! empty( $start ) ) {
 // Query
 $query =  "
 	SELECT
-		subscription.id AS subscription_id,
-		subscription.post_id AS subscription_post_id,
+		company.id AS company_id,
 		company.name AS company_name,
 		company.post_id AS company_post_id,
-		product.name AS product_name,
-		subscription.name AS subscription_name,
 		SUM( timesheet.number_seconds ) AS subscription_seconds
 	FROM
-		$wpdb->orbis_subscriptions AS subscription
-			LEFT JOIN
-		$wpdb->orbis_subscription_products AS product
-				ON subscription.type_id = product.id
-			LEFT JOIN
 		$wpdb->orbis_timesheets AS timesheet
-				ON subscription.id = timesheet.subscription_id
 			LEFT JOIN
 		$wpdb->orbis_companies AS company
-				ON subscription.company_id = company.id
+				ON timesheet.company_id = company.id
 	WHERE
-		subscription.cancel_date IS NULL
-			AND
 		%s
 	GROUP BY
-		subscription.id
+		company.id
 	ORDER BY
 		subscription_seconds DESC
 	LIMIT
@@ -110,8 +99,6 @@ $results = $wpdb->get_results( $query );
 	<thead>
 		<tr>
 			<th><?php _e( 'Company', 'orbis_pronamic' ); ?></th>
-			<th><?php _e( 'Subscription', 'orbis_pronamic' ); ?></th>
-			<th><?php _e( 'Name', 'orbis_pronamic' ); ?></th>
 			<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
 		</tr>
 	</thead>
@@ -123,14 +110,6 @@ $results = $wpdb->get_results( $query );
 				<td>
 					<a href="<?php echo add_query_arg( 'p', $row->company_post_id, home_url( '/' ) ); ?>">
 						<?php echo $row->company_name; ?>
-					</a>
-				</td>
-				<td>
-					<?php echo $row->product_name; ?>
-				</td>
-				<td>
-					<a href="<?php echo add_query_arg( 'p', $row->subscription_post_id, home_url( '/' ) ); ?>">
-						<?php echo $row->subscription_name; ?>
 					</a>
 				</td>
 				<td>

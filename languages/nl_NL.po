@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2015-09-04 13:16:36+00:00\n"
-"PO-Revision-Date: 2015-09-04 15:17+0100\n"
+"POT-Creation-Date: 2014-12-23 08:05:49+00:00\n"
+"PO-Revision-Date: 2014-12-23 09:06+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;__ngettext:1,2;__withdesc;_ewithdesc;_c;"
 "_n_noop:1,2;__ngettext_noop:1,2;_x:2c,1;_nc:1,2;esc_attr_e;esc_html_e;"
 "esc_attr__;_nx:4c,1,2;_nx_noop:4c,1,2;esc_html_x:2c,1;esc_html__;_ex:2c,1\n"
@@ -65,22 +65,6 @@ msgstr "Beschrijving"
 #: template-timesheets.php:280
 msgid "Time"
 msgstr "Tijd"
-
-#: page-templates/subscriptions-twinfield.php:136
-msgid "Invoice created by Orbis on %s."
-msgstr "Factuur gemaakt door Orbis op %s."
-
-#: page-templates/subscriptions-twinfield.php:215
-msgid "Orbis ID: %s"
-msgstr "Orbis ID: %s"
-
-#: page-templates/subscriptions-twinfield.php:256
-msgid "Article"
-msgstr "Artikel"
-
-#: page-templates/subscriptions-twinfield.php:264
-msgid "Subarticle"
-msgstr "Subartikel"
 
 #: single-orbis_subscription.php:46
 msgid "Additional Information"
@@ -200,10 +184,6 @@ msgstr "Registrar prijzen"
 #. Template Name of the plugin/theme
 msgid "Registrar"
 msgstr "Registrar"
-
-#. Template Name of the plugin/theme
-msgid "Subscriptions Twinfield"
-msgstr "Abonnementen Twinfield"
 
 #~ msgid "404"
 #~ msgstr "404"
@@ -451,6 +431,9 @@ msgstr "Abonnementen Twinfield"
 
 #~ msgid "Number:"
 #~ msgstr "Aantal:"
+
+#~ msgid "Orbis News"
+#~ msgstr "Orbis nieuws"
 
 #~ msgid "More news"
 #~ msgstr "Meer nieuws"
