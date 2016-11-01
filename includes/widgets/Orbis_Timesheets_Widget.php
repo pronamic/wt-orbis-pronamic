@@ -16,8 +16,8 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 	/**
 	 * Constructs and initializes this widget
 	 */
-	public function Orbis_Timesheets_Widget() {
-		parent::WP_Widget( 'orbis-timesheets', __( 'Orbis Timesheets', 'orbis_pronamic' ) );
+	public function __construct() {
+		parent::__construct( 'orbis-timesheets', __( 'Orbis Timesheets', 'orbis_pronamic' ) );
 	}
 
 	function widget( $args, $instance ) {
