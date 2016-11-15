@@ -187,9 +187,9 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 	<div class="row">
 		<div class="col-md-2">
 			<div class="btn-group">
-				<a class="btn btn-default" href="<?php echo $url_previous; ?>">&lt;</a>
-				<a class="btn btn-default" href="<?php echo $url_next; ?>">&gt;</a>
-				<a class="btn btn-default" href="<?php echo $url_week_this; ?>">Deze week</a>
+				<a class="btn btn-secondary" href="<?php echo $url_previous; ?>">&lt;</a>
+				<a class="btn btn-secondary" href="<?php echo $url_next; ?>">&gt;</a>
+				<a class="btn btn-secondary" href="<?php echo $url_week_this; ?>">Deze week</a>
 			</div>
 		</div>
 	
@@ -203,7 +203,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 				<input type="text" name="end_date" class="form-control input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $end_date ); ?>">
 			</div>
 	
-			<button type="submit" class="btn btn-default">Filter</button>
+			<button type="submit" class="btn btn-secondary">Filter</button>
 		</div>
 	
 		<div class="col-md-4">
@@ -226,7 +226,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 				?>
 
-				<button type="submit" class="btn btn-default">Filter</button>
+				<button type="submit" class="btn btn-secondary">Filter</button>
 			</div>
 		</div>
 	</div>
