@@ -181,8 +181,6 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 ?>
 
-<h1>Werk</h1>
-
 <form class="form-inline" method="get" action="">
 	<div class="row">
 		<div class="col-md-2">
