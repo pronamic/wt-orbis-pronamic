@@ -13,12 +13,6 @@ get_header(); ?>
 	}
 </style>
 
-<div class="page-header">
-	<h1>
-		Projects over budget <small><?php _e( 'This list should be empty dude', 'orbis_pronamic' ); ?></small>
-	</h1>
-</div>
-
 <?php
 
 // Function for sorting array
@@ -157,7 +151,7 @@ endif; endforeach;
 							</a>
 						</td>
 						<td><?php echo $total; ?> uren</td>
-						<td <?php if($total > 10) { echo 'class="attention"'; } ?>>&euro;<?php echo number_format( $amount, 2, ',', '.' ); ?></td>
+						<td <?php if($total > 10) { echo 'class="attention"'; } ?>>&euro;&nbsp;<?php echo number_format( $amount, 2, ',', '.' ); ?></td>
 					</tr>
 					
 					<?php endforeach; ?>
