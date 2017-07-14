@@ -185,23 +185,37 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 	<div class="row">
 		<div class="col-md-2">
 			<div class="btn-group">
-				<a class="btn btn-secondary" href="<?php echo $url_previous; ?>">&lt;</a>
-				<a class="btn btn-secondary" href="<?php echo $url_next; ?>">&gt;</a>
-				<a class="btn btn-secondary" href="<?php echo $url_week_this; ?>">Deze week</a>
+				<a class="btn btn-secondary" href="<?php echo $url_previous; ?>"><?php echo esc_html( _x( '<', 'previous', 'orbis_pronamic' ) ); ?></a>
+				<a class="btn btn-secondary" href="<?php echo $url_next; ?>"><?php echo esc_html( _x( '>', 'next', 'orbis_pronamic' ) ); ?></a>
+				<a class="btn btn-secondary" href="<?php echo $url_week_this; ?>"><?php echo esc_html( __( 'This week', 'orbis_pronamic' ) ); ?></a>
 			</div>
 		</div>
 	
-		<div class="col-md-6">			
-			View report from
+		<div class="col-md-6">
 			<div class="form-group">
-				<input type="text" name="start_date" class="form-control input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $start_date ); ?>">
+				<?php
+
+				printf(
+					__( 'View report from %s to %s', 'orbis_pronamic' ),
+					sprintf(
+						'<input type="text" name="start_date" class="form-control input-small" placeholder="0000-00-00" value="%s" />',
+						esc_attr( date( 'd-m-Y', $start_date ) )
+					),
+					sprintf(
+						'<input type="text" name="end_date" class="form-control input-small" placeholder="0000-00-00" value="%s" />',
+						esc_attr( date( 'd-m-Y', $end_date ) )
+					)
+				);
+
+				echo ' ';
+
+				printf(
+					'<button type="submit" class="btn btn-secondary">%s</button>',
+					esc_html__( 'Filter', 'orbis_pronamic' )
+				);
+
+				?>
 			</div>
-			to
-			<div class="form-group">
-				<input type="text" name="end_date" class="form-control input-small" placeholder="0000-00-00" value="<?php echo date( 'd-m-Y', $end_date ); ?>">
-			</div>
-	
-			<button type="submit" class="btn btn-secondary">Filter</button>
 		</div>
 	
 		<div class="col-md-4">
@@ -224,7 +238,7 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 				?>
 
-				<button type="submit" class="btn btn-secondary">Filter</button>
+				<button type="submit" class="btn btn-secondary"><?php esc_html_e( 'Filter', 'orbis_pronamic' ); ?></button>
 			</div>
 		</div>
 	</div>
@@ -234,11 +248,20 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 <div class="row">
 	<div class="col-md-12">
-		<h1><?php echo round( $total ) . '%'; ?> <span style="font-size: 16px; font-weight: normal;">of the hours are billable</span> </h1>
+		<p>
+			<?php
+
+			printf(
+				__( '%s of the hours are billable', 'orbis_pronamic' ),
+				'<span style="font-size: 2.5rem">' . esc_html( '' . round( $total ) . '%' ) . '</span>'
+			);
+
+			?>
+		</p>
 
 		<div class="progress progress-striped active">
 			<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo round( $total ); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo round( $total ) . '%'; ?>;">
-				<span class="sr-only"><?php echo round( $total ) . '%'; ?> Complete</span>
+				<span class="sr-only"><?php printf( __( '%s Complete', 'orbis_pronamic' ), '' . round( $total ) . '%' ); ?></span>
 			</div>
 		</div>
 	</div>
@@ -247,17 +270,17 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 <div class="row">
 	<div class="col-md-3">
 		<p><?php _e( 'Total tracked hours', 'orbis_pronamic' ); ?></p>
-		<h1><?php echo round( $total_hours, 2 ); ?></h1>
+		<h1><?php echo orbis_time( $total_seconds ); ?></h1>
 	</div>
 
 	<div class="col-md-3">
 		<p><?php _e( 'Billabale hours', 'orbis_pronamic' ); ?></p>
-		<h1><?php echo round( $billable_hours, 2 ); ?></h1>
+		<h1><?php echo orbis_time( $billable_seconds ); ?></h1>
 	</div>
 
 	<div class="col-md-3">
 		<p><?php _e( 'Unbillabale hours', 'orbis_pronamic' ); ?></p>
-		<h1><?php echo round( $unbillable_hours, 2 ); ?></h1>
+		<h1><?php echo orbis_time( $unbillable_seconds ); ?></h1>
 	</div>
 
 	<div class="col-md-3">
