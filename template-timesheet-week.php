@@ -69,77 +69,88 @@ $url_week_this = add_query_arg( 'date', date( 'd-m-Y', $week_this ) );
 ?>
 
 <form class="form-inline" method="get" action="">
-	<div class="row">
-		<div class="col-md-2">
-			<div class="btn-group">
-				<a class="btn btn-secondary" href="<?php echo $url_previous; ?>"><?php echo esc_html( _x( '<', 'previous', 'orbis_pronamic' ) ); ?></a>
-				<a class="btn btn-secondary" href="<?php echo $url_next; ?>"><?php echo esc_html( _x( '>', 'next', 'orbis_pronamic' ) ); ?></a>
-				<a class="btn btn-secondary" href="<?php echo $url_week_this; ?>"><?php echo esc_html( __( 'This week', 'orbis_pronamic' ) ); ?></a>
-			</div>
-		</div>
+	<div class="btn-group">
+		<a class="btn btn-secondary" href="<?php echo $url_previous; ?>"><?php echo esc_html( _x( '<', 'previous', 'orbis_pronamic' ) ); ?></a>
+		<a class="btn btn-secondary" href="<?php echo $url_next; ?>"><?php echo esc_html( _x( '>', 'next', 'orbis_pronamic' ) ); ?></a>
+		<a class="btn btn-secondary" href="<?php echo $url_week_this; ?>"><?php echo esc_html( __( 'This week', 'orbis_pronamic' ) ); ?></a>
 	</div>
 </form>
 
 <hr />
 
-<table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th><?php esc_html_e( 'User', 'orbis_pronamic' ); ?></th>
+<div class="card">
+	<div class="card-header">
+		<?php
 
-			<?php foreach ( $days as $day ): ?>
+		printf(
+			__( 'Week %s', 'orbis_pronamic' ),
+			date_i18n( 'W', strtotime( '+1 day', $date ) )
+		);
 
-				<th><?php echo esc_html( date_i18n( 'D j M', $day ) ); ?></th>
-			
-			<?php endforeach; ?>
+		?>
+	</div>
 
-			<th><?php esc_html_e( 'Total', 'orbis_pronamic' ); ?></th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php foreach ( $users as $user ): ?>
-		
-			<tr>
-				<td>
-					<?php 
+	<div class="card-body">
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th><?php esc_html_e( 'User', 'orbis_pronamic' ); ?></th>
 
-					echo esc_html( $user->display_name );
+					<?php foreach ( $days as $day ): ?>
 
-					$total = 0;
-
-					?>
-				</td>
-
-				<?php foreach ( $days as $day ): ?>
-
-					<?php 
+						<th><?php echo esc_html( date_i18n( 'D j M', $day ) ); ?></th>
 					
-					$q = $wpdb->prepare( $query, $user->ID, date( 'Y-m-d', $day ) );
+					<?php endforeach; ?>
 
-					$seconds = $wpdb->get_var( $q );
+					<th><?php esc_html_e( 'Total', 'orbis_pronamic' ); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ( $users as $user ): ?>
+				
+					<tr>
+						<td>
+							<?php 
+
+							echo esc_html( $user->display_name );
+
+							$total = 0;
+
+							?>
+						</td>
+
+						<?php foreach ( $days as $day ): ?>
+
+							<?php 
+							
+							$q = $wpdb->prepare( $query, $user->ID, date( 'Y-m-d', $day ) );
+
+							$seconds = $wpdb->get_var( $q );
+							
+							$total += $seconds;
+							
+							$url = add_query_arg( array(
+								'start_date' => date( 'Y-m-d', $day ),
+								'end_date'   => date( 'Y-m-d', $day ),
+								'user'       => $user->ID,
+							), 'http://in.pronamic.nl/rapporten/werk/' );
+							
+							?>
+							<td>
+								<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( orbis_time( $seconds ) ); ?></a>
+							</td>
 					
-					$total += $seconds;
-					
-					$url = add_query_arg( array(
-						'start_date' => date( 'Y-m-d', $day ),
-						'end_date'   => date( 'Y-m-d', $day ),
-						'user'       => $user->ID,
-					), 'http://in.pronamic.nl/rapporten/werk/' );
-					
-					?>
-					<td>
-						<a href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( orbis_time( $seconds ) ); ?></a>
-					</td>
-			
+						<?php endforeach; ?>
+
+						<td>
+							<?php echo esc_html( orbis_time( $total ) ); ?>
+						</td>
+					</tr>
+
 				<?php endforeach; ?>
-
-				<td>
-					<?php echo esc_html( orbis_time( $total ) ); ?>
-				</td>
-			</tr>
-
-		<?php endforeach; ?>
-	</tbody>
-</table>
+			</tbody>
+		</table>
+	</div>
+</div>
 
 <?php get_footer(); ?>

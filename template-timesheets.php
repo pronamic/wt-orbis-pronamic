@@ -180,20 +180,19 @@ $url_previous  = add_query_arg( orbis_format_timestamps( $previous, 'd-m-Y' ) );
 $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 
 ?>
-
-<form class="form-inline" method="get" action="">
-	<div class="row">
-		<div class="col-md-2">
+<form method="get" action="">
+	<div class="d-flex justify-content-between bd-highlight mb-3">
+		<div>
 			<div class="btn-group">
 				<a class="btn btn-secondary" href="<?php echo $url_previous; ?>"><?php echo esc_html( _x( '<', 'previous', 'orbis_pronamic' ) ); ?></a>
 				<a class="btn btn-secondary" href="<?php echo $url_next; ?>"><?php echo esc_html( _x( '>', 'next', 'orbis_pronamic' ) ); ?></a>
 				<a class="btn btn-secondary" href="<?php echo $url_week_this; ?>"><?php echo esc_html( __( 'This week', 'orbis_pronamic' ) ); ?></a>
 			</div>
 		</div>
-	
-		<div class="col-md-6">
+
+		<div class="form-inline">
 			<div class="form-group">
-				<?php
+				<span><?php
 
 				printf(
 					__( 'View report from %s to %s', 'orbis_pronamic' ),
@@ -214,32 +213,30 @@ $url_next      = add_query_arg( orbis_format_timestamps( $next, 'd-m-Y' ) );
 					esc_html__( 'Filter', 'orbis_pronamic' )
 				);
 
-				?>
+				?></span>
 			</div>
 		</div>
-	
-		<div class="col-md-4">
-			<div class="pull-right">
-				<?php
 
-				$users = get_users( array(
-					'fields'     => 'ids',
-					'meta_key'   => '_orbis_user',
-					'meta_value' => 'true',
-				) );
+		<div class="form-inline">
+			<span><?php
 
-				wp_dropdown_users( array(
-					'name'             => 'user',
-					'selected'         => filter_input( INPUT_GET, 'user', FILTER_SANITIZE_STRING ),
-					'show_option_none' => __( '&mdash; All Users &mdash;', 'orbis_pronamic' ),
-					'class'            => 'form-control',
-					'include'          => $users,
-				) );
+			$users = get_users( array(
+				'fields'     => 'ids',
+				'meta_key'   => '_orbis_user',
+				'meta_value' => 'true',
+			) );
 
-				?>
+			wp_dropdown_users( array(
+				'name'             => 'user',
+				'selected'         => filter_input( INPUT_GET, 'user', FILTER_SANITIZE_STRING ),
+				'show_option_none' => __( '&mdash; All Users &mdash;', 'orbis_pronamic' ),
+				'class'            => 'form-control',
+				'include'          => $users,
+			) );
 
-				<button type="submit" class="btn btn-secondary"><?php esc_html_e( 'Filter', 'orbis_pronamic' ); ?></button>
-			</div>
+			?>
+
+			<button type="submit" class="btn btn-secondary"><?php esc_html_e( 'Filter', 'orbis_pronamic' ); ?></button></span>
 		</div>
 	</div>
 </form>
