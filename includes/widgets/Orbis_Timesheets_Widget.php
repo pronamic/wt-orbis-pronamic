@@ -196,7 +196,22 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 			}
 
 			?>
-			<p class="h1" style="margin-top: 0;"><?php echo round( $total ) . '%'; ?> <span style="font-size: 16px; font-weight: normal; color: #999;">of the hours are billable</span> </p>
+			<style type="text/css">
+				.orbis-pronamic-strong {
+					color: #212529;
+				}
+			</style>
+
+			<p class="alt">
+				<?php
+
+				printf(
+					__( '%s of the hours are billable', 'orbis_pronamic' ),
+					'<span class="h1 orbis-pronamic-strong">' . esc_html( round( $total ) . '%' ) . '</span>'
+				);
+
+				?>
+			</p>
 
 			<div class="mb-3">
 				<div class="progress">
