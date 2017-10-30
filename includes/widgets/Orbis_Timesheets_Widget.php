@@ -182,51 +182,49 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 
 			$amount = $billable_hours * 75;
 
+			$classes = array(
+				'progress-bar',
+				'progress-bar-striped',
+			);
+
+			if ( $total < 50 ) {
+				$classes[] = 'bg-danger';
+			} elseif ( $total < 60 ) {
+				$classes[] = 'bg-warning';
+			} else {
+				$classes[] = 'bg-success';
+			}
+
 			?>
+			<p class="h1" style="margin-top: 0;"><?php echo round( $total ) . '%'; ?> <span style="font-size: 16px; font-weight: normal; color: #999;">of the hours are billable</span> </p>
 
-			<div class="row">
-				<div class="col-md-12">
-					<?php
-
-					if ( $total < 50 ) {
-						$progress_bar = 'progress-danger';
-					} elseif ( $total < 60 ) {
-						$progress_bar = 'progress-warning';
-					} else {
-						$progress_bar = 'progress-success';
-					}
-
-					?>
-
-					<p class="h1" style="margin-top: 0;"><?php echo round( $total ) . '%'; ?> <span style="font-size: 16px; font-weight: normal; color: #999;">of the hours are billable</span> </p>
-
-					<progress class="progress progress-striped <?php echo $progress_bar; ?>" value="<?php echo round( $total ); ?>" max="100">
-						<span class="sr-only"><?php echo round( $total ) . '%'; ?> Complete</span>
-					</progress>
+			<div class="mb-3">
+				<div class="progress">
+					<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" role="progressbar" style="width: <?php echo round( $total ); ?>%" aria-valuenow="<?php echo round( $total ); ?>" aria-valuemin="0" aria-valuemax="100"></div>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-4">
+					<p class="h3"><?php echo orbis_time( $total_seconds ); ?></p>
 					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Total tracked hours', 'orbis_pronamic' ); ?></p>
-					<p class="h3"><?php echo round( $total_hours, 2 ); ?></p>
 				</div>
 
 				<div class="col-md-4">
+					<p class="h3"><?php echo orbis_time( $billable_seconds ); ?></p>
 					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Billabale hours', 'orbis_pronamic' ); ?></p>
-					<p class="h3"><?php echo round( $billable_hours, 2 ); ?></p>
 				</div>
 
 				<div class="col-md-4">
+					<p class="h3"><?php echo orbis_time( $unbillable_seconds ); ?></p>
 					<p class="alt" style="margin-bottom: 5px;"><?php _e( 'Unbillabale hours', 'orbis_pronamic' ); ?></p>
-					<p class="h3"><?php echo round( $unbillable_hours, 2 ); ?></p>
 				</div>
 			</div>
 		</div>
 
-		<?php echo $after_widget; ?>
-		
 		<?php
+
+		echo $after_widget;
 	}
 
 	function update( $new_instance, $old_instance ) {
