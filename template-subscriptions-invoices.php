@@ -59,47 +59,37 @@ $results = $wpdb->get_results( $query );
 
 ?>
 
-<form class="form-inline" method="get" action="">
-	<div class="row">
-		<div class="col-md-2">
+<div class="d-flex justify-content-end">
+	<form class="form-inline" method="get" action="">
+		<span>
+			<select name="start" id="user" class="form-control">
+				<?php
 
-		</div>
-	
-		<div class="col-md-6">			
+				$filter = array(
+					''          => 'Totaal',
+					'-1 year'   => 'Afgelopen jaar',
+					'-6 months' => 'Afgelopen half jaar',
+					'-3 months' => 'Afgelopen 3 maanden',
+					'-1 month'  => 'Afgelopen maand',
+					'-1 week'   => 'Afgelopen week',
+				);
 
-		</div>
-	
-		<div class="col-md-4">
-			<div class="pull-right">
-				<select name="start" id="user" class="form-control">
-					<?php
-
-					$filter = array(
-						''          => 'Totaal',
-						'-1 year'   => 'Afgelopen jaar',
-						'-6 months' => 'Afgelopen half jaar',
-						'-3 months' => 'Afgelopen 3 maanden',
-						'-1 month'  => 'Afgelopen maand',
-						'-1 week'   => 'Afgelopen week',
+				foreach ( $filter as $value => $label ) {
+					printf(
+						'<option value="%s" %s>%s</option>',
+						esc_attr( $value ),
+						selected( $start, $value, false ),
+						esc_html( $label )
 					);
+				}
 
-					foreach ( $filter as $value => $label ) {
-						printf(
-							'<option value="%s" %s>%s</option>',
-							esc_attr( $value ),
-							selected( $start, $value, false ),
-							esc_html( $label )
-						);
-					}
+				?>
+			</select>
 
-					?>
-				</select>
-
-				<button type="submit" class="btn btn-default">Filter</button>
-			</div>
-		</div>
-	</div>
-</form>
+			<button type="submit" class="btn btn-primary">Filter</button>
+		</span>
+	</form>
+</div>
 
 <hr />
 
