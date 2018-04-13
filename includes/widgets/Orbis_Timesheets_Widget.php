@@ -35,7 +35,7 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 
 		<?php endif; ?>
 
-		<div class="content">
+		<div class="card-body">
 			<?php
 
 			// Globals
