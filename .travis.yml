@@ -38,10 +38,6 @@ install:
   - yarn global add grunt-cli
   # Install Node.js packages.
   - yarn install
-  # Update Composer itself to the latest version (https://getcomposer.org/doc/03-cli.md#self-update-selfupdate-).
-  - composer self-update
-  # Install Composer packages.
-  - composer install
 
 before_script:
   - wget https://raw.githubusercontent.com/wp-cli/sample-plugin/master/bin/install-wp-tests.sh
