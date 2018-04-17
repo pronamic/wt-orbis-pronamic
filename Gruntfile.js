@@ -1,5 +1,15 @@
 module.exports = function( grunt ) {
 	// Project configuration.
+	require( 'load-grunt-tasks' )( grunt );
+
+	var phpFiles = [
+		'**/*.php',
+		'!node_modules/**',
+		'!bower_components/**',
+		'!deploy/**',
+		'!vendor/**'
+	];
+
 	grunt.initConfig( {
 		// Package
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -23,6 +33,18 @@ module.exports = function( grunt ) {
 					type: 'wp-theme',
 					exclude: [ 'bower_components/.*', 'node_modules/.*' ],
 				}
+			}
+		},
+
+		// PHP Code Sniffer
+		phpcs: {
+			application: {
+				src: phpFiles
+			},
+			options: {
+				bin: 'vendor/bin/phpcs',
+				standard: 'phpcs.ruleset.xml',
+				showSniffCodes: true
 			}
 		},
 

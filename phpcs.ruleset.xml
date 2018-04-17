@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<ruleset name="Orbis 3">
+	<config name="installed_paths" value="../../wp-coding-standards/wpcs" />
+
+	<rule ref="WordPress">
+		<exclude name="Squiz.Commenting" />
+
+		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
+		<exclude name="WordPress.Functions.DontExtract.extract" />
+
+		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
+	</rule>
+</ruleset>
