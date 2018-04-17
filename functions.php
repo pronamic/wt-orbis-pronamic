@@ -27,7 +27,7 @@ function orbis_pronamic_widgets_init() {
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>'
+		'after_title'   => '</h3>',
 	) );
 }
 
@@ -56,7 +56,7 @@ remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_
 
 /* Grid */
 function orbis_woocommerce_grid() {
- 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 	add_action( 'woocommerce_before_main_content', 'woocommerce_get_sidebar', 20 );
 }
 
@@ -86,7 +86,7 @@ function orbis_checklist_shortcode( $atts ) {
 				'post_type'      => 'orbis_checklist_item',
 				'posts_per_page' => $atts['number'],
 				'no_found_rows'  => true,
-				'tax_query' => array(
+				'tax_query'      => array(
 					array(
 						'taxonomy' => 'orbis_checklist_category',
 						'field'    => 'slug',
@@ -100,7 +100,10 @@ function orbis_checklist_shortcode( $atts ) {
 				<h4><?php echo esc_html( $category->name ); ?></h4>
 
 				<div class="panel-group" id="<?php echo esc_attr( $category->slug ); ?>" role="tablist" aria-multiselectable="true">
-					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+					<?php
+					while ( $query->have_posts() ) :
+						$query->the_post();
+					?>
 
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="heading-<?php the_ID(); ?>">
@@ -119,7 +122,10 @@ function orbis_checklist_shortcode( $atts ) {
 					<?php endwhile; ?>
 				</div>
 
-			<?php wp_reset_postdata(); endif; ?>
+			<?php
+				wp_reset_postdata();
+			endif;
+			?>
 
 		<?php endforeach; ?>
 

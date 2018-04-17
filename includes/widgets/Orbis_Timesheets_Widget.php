@@ -20,7 +20,7 @@ class Orbis_Timesheets_Widget extends WP_Widget {
 		parent::__construct( 'orbis-timesheets', __( 'Orbis Timesheets', 'orbis_pronamic' ) );
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		extract( $args );
 
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
