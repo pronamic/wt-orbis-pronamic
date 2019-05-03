@@ -30,40 +30,40 @@ $query = $wpdb->prepare( $query, get_the_ID() );
 $results = $wpdb->get_results( $query );
 
 ?>
-<div class="panel">
-	<header>
-		<h3>Werkregistraties</h3>
-	</header>
+<div class="card mb-3">
+	<div class="card-header">Werkregistraties</div>
 
-	<table class="table table-striped table-bordered panel">
-		<thead>
-			<tr>
-				<th><?php _e( 'Date', 'orbis_pronamic' ); ?></th>
-				<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
-				<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
-				<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
-			</tr>
-		</thead>
-		<tbody>
-
-			<?php foreach( $results as $row ) : ?>
-
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered mb-0">
+			<thead>
 				<tr>
-					<td>
-						<?php echo $row->entry_date; ?>
-					</td>
-					<td>
-						<?php echo $row->user_display_name; ?>
-					</td>
-					<td>
-						<?php echo $row->entry_description; ?>
-					</td>
-					<td>
-						<?php echo orbis_time( $row->entry_number_seoncds ); ?>
-					</td>
+					<th><?php _e( 'Date', 'orbis_pronamic' ); ?></th>
+					<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
+					<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
+					<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
 				</tr>
+			</thead>
+			<tbody>
 
-			<?php endforeach; ?>
-		</tbody>
-	</table>
+				<?php foreach( $results as $row ) : ?>
+
+					<tr>
+						<td>
+							<?php echo $row->entry_date; ?>
+						</td>
+						<td>
+							<?php echo $row->user_display_name; ?>
+						</td>
+						<td>
+							<?php echo $row->entry_description; ?>
+						</td>
+						<td>
+							<?php echo orbis_time( $row->entry_number_seoncds ); ?>
+						</td>
+					</tr>
+
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
 </div>
