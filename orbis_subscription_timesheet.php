@@ -29,9 +29,21 @@ $query = $wpdb->prepare( $query, get_the_ID() );
 
 $results = $wpdb->get_results( $query );
 
+$note = get_option( 'orbis_timesheets_note' );
+
 ?>
 <div class="card mb-3">
 	<div class="card-header">Werkregistraties</div>
+
+	<?php if ( $note ) : ?>
+
+		<div class="card-body">
+			<div class="alert alert-warning mb-0" role="alert">
+				<i class="fas fa-exclamation-triangle"></i> <?php echo wp_kses_post( $note ); ?>
+			</div>
+		</div>
+
+	<?php endif; ?>
 
 	<div class="table-responsive">
 		<table class="table table-striped table-bordered mb-0">
