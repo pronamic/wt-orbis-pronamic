@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wt-orbis-pronamic\n"
-"POT-Creation-Date: 2020-01-03 12:28:48+00:00\n"
-"PO-Revision-Date: 2020-01-03 13:29+0100\n"
+"POT-Creation-Date: 2020-01-03 13:39:14+00:00\n"
+"PO-Revision-Date: 2020-01-03 14:39+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -65,11 +65,22 @@ msgstr "Gebruiker"
 msgid "Description"
 msgstr "Beschrijving"
 
-#: orbis_subscription_timesheet.php:65 template-companies-top.php:102
-#: template-projects-top.php:108 template-subscription-timesheets.php:118
-#: template-subscriptions-top.php:115 template-timesheets.php:298
+#: orbis_subscription_timesheet.php:65 orbis_subscription_timesheet.php:136
+#: template-companies-top.php:102 template-projects-top.php:108
+#: template-subscription-timesheets.php:118 template-subscriptions-top.php:115
+#: template-timesheets.php:298
 msgid "Time"
 msgstr "Tijd"
+
+#: orbis_subscription_timesheet.php:135
+msgid "Month"
+msgstr "Maand"
+
+#: orbis_subscription_timesheet.php:142
+#: template-subscription-timesheets.php:119 template-timesheet-week.php:105
+#: template-timesheets.php:299
+msgid "Total"
+msgstr "Totaal"
 
 #: single-orbis_subscription.php:40
 msgid "Additional Information"
@@ -105,11 +116,6 @@ msgstr "Project"
 #: template-subscription-timesheets.php:115 template-timesheets.php:295
 msgid "Client"
 msgstr "Klant"
-
-#: template-subscription-timesheets.php:119 template-timesheet-week.php:105
-#: template-timesheets.php:299
-msgid "Total"
-msgstr "Totaal"
 
 #: template-subscription-timesheets.php:156 template-timesheets.php:336
 msgid "%s billable, %s unbillable"

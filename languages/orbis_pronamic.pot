@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wt-orbis-pronamic\n"
-"POT-Creation-Date: 2020-01-03 12:28:48+00:00\n"
+"POT-Creation-Date: 2020-01-03 13:39:14+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,10 +60,21 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: orbis_subscription_timesheet.php:65 template-companies-top.php:102
-#: template-projects-top.php:108 template-subscription-timesheets.php:118
-#: template-subscriptions-top.php:115 template-timesheets.php:298
+#: orbis_subscription_timesheet.php:65 orbis_subscription_timesheet.php:136
+#: template-companies-top.php:102 template-projects-top.php:108
+#: template-subscription-timesheets.php:118 template-subscriptions-top.php:115
+#: template-timesheets.php:298
 msgid "Time"
+msgstr ""
+
+#: orbis_subscription_timesheet.php:135
+msgid "Month"
+msgstr ""
+
+#: orbis_subscription_timesheet.php:142
+#: template-subscription-timesheets.php:119 template-timesheet-week.php:105
+#: template-timesheets.php:299
+msgid "Total"
 msgstr ""
 
 #: single-orbis_subscription.php:40
@@ -99,11 +110,6 @@ msgstr ""
 
 #: template-subscription-timesheets.php:115 template-timesheets.php:295
 msgid "Client"
-msgstr ""
-
-#: template-subscription-timesheets.php:119 template-timesheet-week.php:105
-#: template-timesheets.php:299
-msgid "Total"
 msgstr ""
 
 #: template-subscription-timesheets.php:156 template-timesheets.php:336
