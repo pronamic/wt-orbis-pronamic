@@ -35,47 +35,60 @@ $note = get_option( 'orbis_timesheets_note' );
 <div class="card mb-3">
 	<div class="card-header">Werkregistraties</div>
 
-	<?php if ( $note ) : ?>
+	<?php if ( empty( $results ) ) : ?>
 
 		<div class="card-body">
-			<div class="alert alert-warning mb-0" role="alert">
-				<i class="fas fa-exclamation-triangle"></i> <?php echo wp_kses_post( $note ); ?>
+			<p class="text-muted m-0">
+				<?php _e( 'There are no time registrations for this subscription.', 'orbis_pronamic' ); ?>
+			</p>
+		</div>
+
+	<?php else : ?>
+
+		<?php if ( $note ) : ?>
+
+			<div class="card-body">
+				<div class="alert alert-warning mb-0" role="alert">
+					<i class="fas fa-exclamation-triangle"></i> <?php echo wp_kses_post( $note ); ?>
+				</div>
 			</div>
+
+		<?php endif; ?>
+
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered mb-0">
+				<thead>
+					<tr>
+						<th><?php _e( 'Date', 'orbis_pronamic' ); ?></th>
+						<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
+						<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
+						<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<?php foreach( $results as $row ) : ?>
+
+						<tr>
+							<td>
+								<?php echo $row->entry_date; ?>
+							</td>
+							<td>
+								<?php echo $row->user_display_name; ?>
+							</td>
+							<td>
+								<?php echo $row->entry_description; ?>
+							</td>
+							<td>
+								<?php echo orbis_time( $row->entry_number_seoncds ); ?>
+							</td>
+						</tr>
+
+					<?php endforeach; ?>
+				</tbody>
+			</table>
 		</div>
 
 	<?php endif; ?>
 
-	<div class="table-responsive">
-		<table class="table table-striped table-bordered mb-0">
-			<thead>
-				<tr>
-					<th><?php _e( 'Date', 'orbis_pronamic' ); ?></th>
-					<th><?php _e( 'User', 'orbis_pronamic' ); ?></th>
-					<th><?php _e( 'Description', 'orbis_pronamic' ); ?></th>
-					<th><?php _e( 'Time', 'orbis_pronamic' ); ?></th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<?php foreach( $results as $row ) : ?>
-
-					<tr>
-						<td>
-							<?php echo $row->entry_date; ?>
-						</td>
-						<td>
-							<?php echo $row->user_display_name; ?>
-						</td>
-						<td>
-							<?php echo $row->entry_description; ?>
-						</td>
-						<td>
-							<?php echo orbis_time( $row->entry_number_seoncds ); ?>
-						</td>
-					</tr>
-
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div>
 </div>

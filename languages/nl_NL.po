@@ -2,9 +2,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2017-07-14 08:25:03+00:00\n"
-"PO-Revision-Date: 2017-07-14 10:25+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wt-orbis-pronamic\n"
+"POT-Creation-Date: 2020-01-03 12:28:48+00:00\n"
+"PO-Revision-Date: 2020-01-03 13:29+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;__ngettext:1,2;__withdesc;_ewithdesc;_c;"
 "_n_noop:1,2;__ngettext_noop:1,2;_x:2c,1;_nc:1,2;esc_attr_e;esc_html_e;"
 "esc_attr__;_nx:4c,1,2;_nx_noop:4c,1,2;esc_html_x:2c,1;esc_html__;_ex:2c,1\n"
@@ -26,43 +26,48 @@ msgstr "Winkel widget gebied"
 msgid "Orbis Timesheets"
 msgstr "Orbis werkregistraties"
 
-#: includes/widgets/Orbis_Timesheets_Widget.php:211
-#: template-subscription-timesheets.php:107 template-timesheets.php:272
+#: includes/widgets/Orbis_Timesheets_Widget.php:209 template-timesheets.php:252
+msgid "%s of the hours are billable"
+msgstr "%s van de uren zijn factureerbaar"
+
+#: includes/widgets/Orbis_Timesheets_Widget.php:225
+#: template-subscription-timesheets.php:107 template-timesheets.php:269
 msgid "Total tracked hours"
 msgstr "Totaal geregistreerde uren"
 
-#: includes/widgets/Orbis_Timesheets_Widget.php:216
-#: template-timesheets.php:277
+#: includes/widgets/Orbis_Timesheets_Widget.php:230 template-timesheets.php:274
 msgid "Billabale hours"
 msgstr "Facturabele uren"
 
-#: includes/widgets/Orbis_Timesheets_Widget.php:221
-#: template-timesheets.php:282
+#: includes/widgets/Orbis_Timesheets_Widget.php:235 template-timesheets.php:279
 msgid "Unbillabale hours"
 msgstr "Niet facturabele uren"
 
-#: includes/widgets/Orbis_Timesheets_Widget.php:247
+#: includes/widgets/Orbis_Timesheets_Widget.php:260
 msgid "Title:"
 msgstr "Titel:"
 
-#: orbis_subscription_timesheet.php:41
+#: orbis_subscription_timesheet.php:42
+msgid "There are no time registrations for this subscription."
+msgstr "Er zijn geen tijd registraties voor dit abonnement."
+
+#: orbis_subscription_timesheet.php:62
 msgid "Date"
 msgstr "Datum"
 
-#: orbis_subscription_timesheet.php:42
-#: template-subscription-timesheets.php:114 template-timesheet-week.php:88
-#: template-timesheets.php:297
+#: orbis_subscription_timesheet.php:63 template-subscription-timesheets.php:114
+#: template-timesheet-week.php:97 template-timesheets.php:294
 msgid "User"
 msgstr "Gebruiker"
 
-#: orbis_subscription_timesheet.php:43 single-orbis_subscription.php:12
-#: template-subscription-timesheets.php:117 template-timesheets.php:300
+#: orbis_subscription_timesheet.php:64 single-orbis_subscription.php:12
+#: template-subscription-timesheets.php:117 template-timesheets.php:297
 msgid "Description"
 msgstr "Beschrijving"
 
-#: orbis_subscription_timesheet.php:44 template-companies-top.php:102
+#: orbis_subscription_timesheet.php:65 template-companies-top.php:102
 #: template-projects-top.php:108 template-subscription-timesheets.php:118
-#: template-subscriptions-top.php:115 template-timesheets.php:301
+#: template-subscriptions-top.php:115 template-timesheets.php:298
 msgid "Time"
 msgstr "Tijd"
 
@@ -87,50 +92,50 @@ msgid "Edit"
 msgstr "Bewerken"
 
 #: template-companies-top.php:101 template-projects-top.php:106
-#: template-subscriptions-invoices.php:109 template-subscriptions-top.php:112
+#: template-subscriptions-invoices.php:99 template-subscriptions-top.php:112
 msgid "Company"
 msgstr "Bedrijf"
 
 #: template-projects-top.php:107 template-subscription-timesheets.php:116
-#: template-timesheets.php:299 templates-projects-over-budget.php:93
+#: template-timesheets.php:296 templates-projects-over-budget.php:93
 #: templates-projects-over-budget.php:130
 msgid "Project"
 msgstr "Project"
 
-#: template-subscription-timesheets.php:115 template-timesheets.php:298
+#: template-subscription-timesheets.php:115 template-timesheets.php:295
 msgid "Client"
 msgstr "Klant"
 
-#: template-subscription-timesheets.php:119 template-timesheet-week.php:96
-#: template-timesheets.php:302
+#: template-subscription-timesheets.php:119 template-timesheet-week.php:105
+#: template-timesheets.php:299
 msgid "Total"
 msgstr "Totaal"
 
-#: template-subscription-timesheets.php:156 template-timesheets.php:339
+#: template-subscription-timesheets.php:156 template-timesheets.php:336
 msgid "%s billable, %s unbillable"
 msgstr "%s factureerbaar, %s niet factureerbaar"
 
-#: template-subscriptions-invoices.php:110
+#: template-subscriptions-invoices.php:100
 msgid "Product"
 msgstr "Product"
 
-#: template-subscriptions-invoices.php:111 template-subscriptions-top.php:113
+#: template-subscriptions-invoices.php:101 template-subscriptions-top.php:113
 msgid "Subscription"
 msgstr "Abonnement"
 
-#: template-subscriptions-invoices.php:112
+#: template-subscriptions-invoices.php:102
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: template-subscriptions-invoices.php:113
+#: template-subscriptions-invoices.php:103
 msgid "End Date"
 msgstr "Einddatum"
 
-#: template-subscriptions-invoices.php:114
+#: template-subscriptions-invoices.php:104
 msgid "Invoice Number"
 msgstr "Factuurnummer"
 
-#: template-subscriptions-invoices.php:115
+#: template-subscriptions-invoices.php:105
 msgid "Price"
 msgstr "Prijs"
 
@@ -138,31 +143,31 @@ msgstr "Prijs"
 msgid "Name"
 msgstr "Naam"
 
-#: template-timesheet-week.php:77 template-timesheets.php:190
+#: template-timesheet-week.php:75 template-timesheets.php:189
 msgid "This week"
 msgstr "Deze week"
 
-#: template-timesheets.php:199
+#: template-timesheet-week.php:86
+msgid "Week %s"
+msgstr "Week %s"
+
+#: template-timesheets.php:198
 msgid "View report from %s to %s"
 msgstr "Bekijk rapport van %s tot %s"
 
-#: template-timesheets.php:214 template-timesheets.php:241
+#: template-timesheets.php:213 template-timesheets.php:239
 msgid "Filter"
 msgstr "Filter"
 
-#: template-timesheets.php:234
+#: template-timesheets.php:232
 msgid "&mdash; All Users &mdash;"
 msgstr "&mdash; Alle gebruikers &mdash;"
 
-#: template-timesheets.php:255
-msgid "%s of the hours are billable"
-msgstr "%s van de uren zijn factureerbaar"
-
-#: template-timesheets.php:264
+#: template-timesheets.php:261
 msgid "%s Complete"
 msgstr "%s voltooid"
 
-#: template-timesheets.php:287
+#: template-timesheets.php:284
 msgid "Billable Amount"
 msgstr "Totaal bedrag"
 
@@ -226,27 +231,24 @@ msgstr "Projecten afgerond niet gefactureerd"
 msgid "Projects over budget"
 msgstr "Projecten over budget"
 
-#. Template Name of the plugin/theme
-msgid "Registrar Prices"
-msgstr "Registrar prijzen"
-
-#. Template Name of the plugin/theme
-msgid "Registrar"
-msgstr "Registrar"
-
-#. Template Name of the plugin/theme
-msgid "Subscriptions Twinfield"
-msgstr "Abonnementen Twinfield"
-
-#: template-timesheet-week.php:75 template-timesheets.php:188
+#: template-timesheet-week.php:73 template-timesheets.php:187
 msgctxt "previous"
 msgid "<"
 msgstr "<"
 
-#: template-timesheet-week.php:76 template-timesheets.php:189
+#: template-timesheet-week.php:74 template-timesheets.php:188
 msgctxt "next"
 msgid ">"
 msgstr ">"
+
+#~ msgid "Registrar Prices"
+#~ msgstr "Registrar prijzen"
+
+#~ msgid "Registrar"
+#~ msgstr "Registrar"
+
+#~ msgid "Subscriptions Twinfield"
+#~ msgstr "Abonnementen Twinfield"
 
 #~ msgid "This list should be empty dude"
 #~ msgstr "Deze lijst zou leeg moeten zijn dude"
