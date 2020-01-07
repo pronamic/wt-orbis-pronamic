@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbis Pronamic\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wt-orbis-pronamic\n"
-"POT-Creation-Date: 2020-01-03 13:39:14+00:00\n"
-"PO-Revision-Date: 2020-01-03 14:39+0100\n"
+"POT-Creation-Date: 2020-01-07 10:27:01+00:00\n"
+"PO-Revision-Date: 2020-01-07 11:27+0100\n"
 "Last-Translator: Remco Tolsma <info@remcotolsma.nl>\n"
 "Language-Team: Pronamic <info@pronamic.nl>\n"
 "Language: nl_NL\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;__ngettext:1,2;__withdesc;_ewithdesc;_c;"
 "_n_noop:1,2;__ngettext_noop:1,2;_x:2c,1;_nc:1,2;esc_attr_e;esc_html_e;"
 "esc_attr__;_nx:4c,1,2;_nx_noop:4c,1,2;esc_html_x:2c,1;esc_html__;_ex:2c,1\n"
@@ -24,7 +24,7 @@ msgstr "Winkel widget gebied"
 
 #: includes/widgets/Orbis_Timesheets_Widget.php:20
 msgid "Orbis Timesheets"
-msgstr "Orbis werkregistraties"
+msgstr "Orbis tijdkaarten"
 
 #: includes/widgets/Orbis_Timesheets_Widget.php:209 template-timesheets.php:252
 msgid "%s of the hours are billable"
@@ -49,7 +49,7 @@ msgstr "Titel:"
 
 #: orbis_subscription_timesheet.php:42
 msgid "There are no time registrations for this subscription."
-msgstr "Er zijn geen tijd registraties voor dit abonnement."
+msgstr "Er zijn geen tijdregistraties voor dit abonnement."
 
 #: orbis_subscription_timesheet.php:62
 msgid "Date"
@@ -215,7 +215,7 @@ msgstr "Projecten top"
 
 #. Template Name of the plugin/theme
 msgid "Timesheets"
-msgstr "Werkregistraties"
+msgstr "Tijdkaarten"
 
 #. Template Name of the plugin/theme
 msgid "Subscriptions Invoices"
@@ -227,7 +227,7 @@ msgstr "Abonnement top"
 
 #. Template Name of the plugin/theme
 msgid "Timesheet week"
-msgstr "Werkregistraties week"
+msgstr "Tijdkaart week"
 
 #. Template Name of the plugin/theme
 msgid "Projects finished not invoiced"
