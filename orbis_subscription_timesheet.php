@@ -177,15 +177,11 @@ $data = $wpdb->get_results( $query, OBJECT_K );
 
 	<div class="card-body">
 		<div id="helpscout-auto-reply-message">
-			<p>
-				Beste lezer,
-			</p>
-
-			<p>
-				Bedankt voor het indienen van een supportaanvraag bij Pronamic. We hebben je bericht ontvangen en gaan er mee aan de slag. Hieronder vind je alvast een overzicht van de geregistreerde uren binnen het "<?php echo esc_html( get_the_title() ) ; ?>" abonnement:
-			</p>
-
-			<table class="table table-striped table-bordered w-auto" border="1">
+			Beste lezer,<br />
+			<br />
+			Bedankt voor het indienen van een supportaanvraag bij Pronamic. We hebben je bericht ontvangen en gaan er mee aan de slag. Hieronder vind je alvast een overzicht van de geregistreerde uren binnen het "<?php echo esc_html( get_the_title() ) ; ?>" abonnement:<br />
+			<br />
+			<table class="table table-striped table-bordered w-auto mb-0" border="1">
 				<thead>
 					<tr>
 						<th scope="col"><?php esc_html_e( 'Month', 'orbis_pronamic' ); ?></th>
@@ -249,22 +245,22 @@ $data = $wpdb->get_results( $query, OBJECT_K );
 				</tbody>
 			</table>
 
+			<br />
+
 			<?php if ( $total_in_period > $subscription->time_per_year ) : ?>
 
-				<p>
-					We hebben in de afgelopen periode meer support uren geregistreerd dan beschikbaar zijn binnen het 
-					<a href="https://www.pronamic.nl/wordpress/wordpress-onderhoud/">WordPress onderhoud en support</a> 
-					abonnement. Om je te kunnen helpen willen we je vragen om een 
-					<a href="https://www.pronamic.nl/strippenkaarten/">strippenkaart</a> te bestellen of je abonnement
-					te upgraden.
-				</p>
+				We hebben in de afgelopen periode meer support uren geregistreerd dan beschikbaar zijn binnen het 
+				<a href="https://www.pronamic.nl/wordpress/wordpress-onderhoud/">WordPress onderhoud en support</a> 
+				abonnement. Om je te kunnen helpen willen we je vragen om een 
+				<a href="https://www.pronamic.nl/strippenkaarten/">strippenkaart</a> te bestellen of je abonnement
+				te upgraden.<br />
+
+				<br />
 
 			<?php endif; ?>
 
-			<p>
-				Met vriendelijke groet,<br />
-				Pronamic
-			</p>
+			Met vriendelijke groet,<br />
+			Pronamic
 		</div>
 	</div>
 
