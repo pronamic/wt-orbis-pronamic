@@ -61,3 +61,14 @@ function orbis_woocommerce_grid() {
 }
 
 add_action( 'template_redirect', 'orbis_woocommerce_grid' );
+
+/**
+ * Project timesheets.
+ */
+add_action( 'orbis_after_main_content', function() {
+	if ( ! is_singular( 'orbis_project' ) ) {
+		return;
+	}
+
+	get_template_part( 'orbis_project_timesheet' );
+} );
