@@ -74,199 +74,275 @@ $period   = new \DatePeriod( $start, $interval, $end );
 
 $data = $wpdb->get_results( $query, OBJECT_K );
 
+$total_in_period = array_sum( wp_list_pluck( $data, 'number_seconds' ) );
+
 ?>
-
 <div class="card mb-3">
 	<div class="card-header">
-		<?php
+		<h5 class="card-title">
+			<?php
 
-		printf(
-			__( 'Tijdregistraties periode %s - %s', 'orbis_pronamic' ),
-			$start->format( 'd-m-Y' ),
-			$end->format( 'd-m-Y' )
-		);
+			printf(
+				__( 'Tijdregistraties periode %s - %s', 'orbis_pronamic' ),
+				$start->format( 'd-m-Y' ),
+				$end->format( 'd-m-Y' )
+			);
 
-		?>
+			?>
+		</h5>
+
+		<ul class="nav nav-tabs card-header-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" data-toggle="tab" href="#template-simple" role="tab">Eenvoudig</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#template-table" role="tab">Tabel</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#template-message" role="tab">Bericht</a>
+			</li>
+		</ul>
 	</div>
 
-	<?php if ( 'strippenkaart' === $subscription->status ) : ?>
+	<div class="tab-content">
+		<div class="tab-pane active" id="template-simple" role="tabpanel">
+			
+			<div class="card-body">
 
-		<div class="card-body">
-			<div class="alert alert-warning mb-0" role="alert">
-				<i class="fas fa-exclamation-triangle"></i> Tijdregistraties op strippenkaart.
+				<?php if ( 'strippenkaart' === $subscription->status ) : ?>
+
+					<div class="alert alert-warning mb-3" role="alert">
+						<i class="fas fa-exclamation-triangle"></i> Tijdregistraties op strippenkaart.
+					</div>
+
+				<?php endif; ?>
+
+				<?php if ( $total_in_period > $subscription->time_per_year ) : ?>
+
+					<?php
+
+					$company_post_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->orbis_companies WHERE id = %d;", $subscription->company_id ) );
+
+					$search_url = \add_query_arg(
+						array(
+							'orbis_project_client_id' => $company_post_id,
+							's'                       => 'strippenkaart',
+						),
+						\get_post_type_archive_link( 'orbis_project' )
+					);
+
+					?>
+
+					<div class="alert alert-info mb-3" role="alert">
+						<i class="fas fa-ticket-alt"></i> <a href="<?php echo \esc_url( $search_url ); ?>">Zoek "Strippenkaart"</a>.
+					</div>
+
+				<?php endif; ?>
+
+				<?php
+
+				$message = \sprintf(
+					'Je hebt nog %s uren beschikbaar binnen het onderhoudsabonnement (%s uren).',
+					\orbis_time( $subscription->time_per_year - $total_in_period ),
+					\orbis_time( $subscription->time_per_year )
+				);
+
+				if ( $total_in_period > $subscription->time_per_year ) {
+					$message = \sprintf(
+						'🤖 We hebben in de afgelopen periode meer support uren geregistreerd dan beschikbaar zijn binnen het <a href="https://www.pronamic.nl/wordpress/wordpress-onderhoud/">WordPress onderhoud en support</a> abonnement 📈. We komen graag in contact met je om af te stemmen hoe we hier mee verder gaan 📞. Je kunt bijvoorbeeld een <a href="https://www.pronamic.nl/strippenkaarten/">strippenkaart</a> bestellen of je abonnement upgraden. We horen graag van je!',
+						\orbis_time( $subscription->time_per_year )
+					);
+				}
+
+				printf(
+					'<div id="orbis-subscription-simple-message">%s</div>',
+					$message
+				);
+
+				?>
+
 			</div>
+
+			<div class="card-footer">
+				<button type="button" class="btn btn-secondary btn-sm orbis-copy" data-clipboard-target="#orbis-subscription-simple-message"><i class="fas fa-paste"></i> Kopieer HTML-bericht</button>
+			</div>
+
 		</div>
 
-	<?php endif; ?>
+		<div class="tab-pane" id="template-table" role="tabpanel">
+			
+			<div class="card-body">
 
-	<div class="table-responsive" id="orbis-subscription-timesheet-per-month">
-		<table class="table table-striped table-bordered mb-0">
-			<thead>
-				<tr>
-					<th scope="col"><?php esc_html_e( 'Month', 'orbis_pronamic' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Time', 'orbis_pronamic' ); ?></th>
-				</tr>
-			</thead>
+			<div class="table-responsive" id="orbis-subscription-timesheet-per-month">
+					<table class="table table-striped table-bordered mb-0">
+						<thead>
+							<tr>
+								<th scope="col"><?php esc_html_e( 'Month', 'orbis_pronamic' ); ?></th>
+								<th scope="col"><?php esc_html_e( 'Time', 'orbis_pronamic' ); ?></th>
+							</tr>
+						</thead>
 
-			<tfoot>
-				<tr>
-					<th scope="row"><?php esc_html_e( 'Total', 'orbis_pronamic' ); ?></th>
-					<td>
-						<?php 
+						<tfoot>
+							<tr>
+								<th scope="row"><?php esc_html_e( 'Total', 'orbis_pronamic' ); ?></th>
+								<td>
+									<?php
 
-						$total_in_period = array_sum( wp_list_pluck( $data, 'number_seconds' ) );
+									printf(
+										__( '%s / %s', 'orbis_pronamic' ),
+										esc_html( orbis_time( $total_in_period ) ),
+										esc_html( orbis_time( $subscription->time_per_year ) )
+									);
 
-						printf(
-							__( '%s / %s', 'orbis_pronamic' ),
-							esc_html( orbis_time( $total_in_period ) ),
-							esc_html( orbis_time( $subscription->time_per_year ) )
-						);
+									?>
+								</td>
+							</tr>
+						</tfoot>
 
-						?>
-					</td>
-				</tr>
-			</tfoot>
+						<tbody>
 
-			<tbody>
+							<?php foreach ( $period as $date ) : ?>
 
-				<?php foreach ( $period as $date ) : ?>
+								<tr>
+									<th scope="row">
+										<?php
 
-					<tr>
-						<th scope="row">
-							<?php
+										$key = $date->format( 'n' );
 
-							$key = $date->format( 'n' );
+										$start_date = $date;
 
-							$start_date = $date;
+										$end_date = clone $start_date;
+										$end_date->add( $interval );
 
-							$end_date = clone $start_date;
-							$end_date->add( $interval );
+										$time = 0;
 
-							$time = 0;
+										if ( array_key_exists( $key, $data ) ) {
+											$item = $data[ $key ];	
 
-							if ( array_key_exists( $key, $data ) ) {
-								$item = $data[ $key ];	
+											$time = $item->number_seconds;
+										}						
 
-								$time = $item->number_seconds;
-							}						
+										echo esc_html( ucfirst( $date->format_i18n( 'F Y' ) ) );
 
-							echo esc_html( ucfirst( $date->format_i18n( 'F Y' ) ) );
+										?>
+									</th>
+									<td>
+										<?php echo esc_html( orbis_time( $time ) ); ?>
+									</td>
+								</tr>
 
-							?>
-						</th>
-						<td>
-							<?php echo esc_html( orbis_time( $time ) ); ?>
-						</td>
-					</tr>
+							<?php endforeach; ?>
 
-				<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
 
-			</tbody>
-		</table>
-	</div>
+			</div>
 
-	<div class="card-footer">
-		<button type="button" class="btn btn-secondary btn-sm float-right orbis-copy" data-clipboard-target="#orbis-subscription-timesheet-per-month"><i class="fas fa-paste"></i> Kopieer HTML-tabel</button>
-	</div>
-</div>
+			<div class="card-footer">
+				<button type="button" class="btn btn-secondary btn-sm orbis-copy" data-clipboard-target="#orbis-subscription-timesheet-per-month"><i class="fas fa-paste"></i> Kopieer HTML-tabel</button>
+			</div>
 
-<div class="card mb-3">
-	<div class="card-header">
-		<a name="helpscout"></a>
-		HelpScout
-	</div>
-
-	<div class="card-body">
-		<div id="helpscout-auto-reply-message">
-			Beste lezer,<br />
-			<br />
-			Bedankt voor het indienen van een supportaanvraag bij Pronamic. We hebben je bericht ontvangen en gaan er mee aan de slag. Hieronder vind je alvast een overzicht van de geregistreerde uren binnen het "<?php echo esc_html( get_the_title() ) ; ?>" abonnement:<br />
-			<br />
-			<table class="table table-striped table-bordered w-auto mb-0" border="1">
-				<thead>
-					<tr>
-						<th scope="col"><?php esc_html_e( 'Month', 'orbis_pronamic' ); ?></th>
-						<th scope="col"><?php esc_html_e( 'Time', 'orbis_pronamic' ); ?></th>
-					</tr>
-				</thead>
-
-				<tfoot>
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Total', 'orbis_pronamic' ); ?></th>
-						<td>
-							<?php 
-
-							$total_in_period = array_sum( wp_list_pluck( $data, 'number_seconds' ) );
-
-							printf(
-								__( '%s / %s', 'orbis_pronamic' ),
-								esc_html( orbis_time( $total_in_period ) ),
-								esc_html( orbis_time( $subscription->time_per_year ) )
-							);
-
-							?>
-						</td>
-					</tr>
-				</tfoot>
-
-				<tbody>
-
-					<?php foreach ( $period as $date ) : ?>
-
-						<tr>
-							<th scope="row">
-								<?php
-
-								$key = $date->format( 'n' );
-
-								$start_date = $date;
-
-								$end_date = clone $start_date;
-								$end_date->add( $interval );
-
-								$time = 0;
-
-								if ( array_key_exists( $key, $data ) ) {
-									$item = $data[ $key ];	
-
-									$time = $item->number_seconds;
-								}						
-
-								echo esc_html( ucfirst( $date->format_i18n( 'F Y' ) ) );
-
-								?>
-							</th>
-							<td>
-								<?php echo esc_html( orbis_time( $time ) ); ?>
-							</td>
-						</tr>
-
-					<?php endforeach; ?>
-
-				</tbody>
-			</table>
-
-			<br />
-
-			<?php if ( $total_in_period > $subscription->time_per_year ) : ?>
-
-				We hebben in de afgelopen periode meer support uren geregistreerd dan beschikbaar zijn binnen het 
-				<a href="https://www.pronamic.nl/wordpress/wordpress-onderhoud/">WordPress onderhoud en support</a> 
-				abonnement. Om je te kunnen helpen willen we je vragen om een 
-				<a href="https://www.pronamic.nl/strippenkaarten/">strippenkaart</a> te bestellen of je abonnement
-				te upgraden.<br />
-
-				<br />
-
-			<?php endif; ?>
-
-			Met vriendelijke groet,<br />
-			Pronamic
 		</div>
-	</div>
 
-	<div class="card-footer">
-		<button type="button" class="btn btn-secondary btn-sm float-right orbis-copy" data-clipboard-target="#helpscout-auto-reply-message"><i class="fas fa-paste"></i> Kopieer HTML-bericht</button>
+		<div class="tab-pane" id="template-message" role="tabpanel">
+
+			<div class="card-body">
+
+				<div id="helpscout-auto-reply-message">
+					Beste lezer,<br />
+					<br />
+					Bedankt voor het indienen van een supportaanvraag bij Pronamic. Hieronder vind je alvast een overzicht van de geregistreerde uren binnen het "<?php echo esc_html( get_the_title() ) ; ?>" abonnement:<br />
+					<br />
+					<table class="table table-striped table-bordered w-auto mb-0" border="1">
+						<thead>
+							<tr>
+								<th scope="col"><?php esc_html_e( 'Month', 'orbis_pronamic' ); ?></th>
+								<th scope="col"><?php esc_html_e( 'Time', 'orbis_pronamic' ); ?></th>
+							</tr>
+						</thead>
+
+						<tfoot>
+							<tr>
+								<th scope="row"><?php esc_html_e( 'Total', 'orbis_pronamic' ); ?></th>
+								<td>
+									<?php 
+
+									$total_in_period = array_sum( wp_list_pluck( $data, 'number_seconds' ) );
+
+									printf(
+										__( '%s / %s', 'orbis_pronamic' ),
+										esc_html( orbis_time( $total_in_period ) ),
+										esc_html( orbis_time( $subscription->time_per_year ) )
+									);
+
+									?>
+								</td>
+							</tr>
+						</tfoot>
+
+						<tbody>
+
+							<?php foreach ( $period as $date ) : ?>
+
+								<tr>
+									<th scope="row">
+										<?php
+
+										$key = $date->format( 'n' );
+
+										$start_date = $date;
+
+										$end_date = clone $start_date;
+										$end_date->add( $interval );
+
+										$time = 0;
+
+										if ( array_key_exists( $key, $data ) ) {
+											$item = $data[ $key ];	
+
+											$time = $item->number_seconds;
+										}						
+
+										echo esc_html( ucfirst( $date->format_i18n( 'F Y' ) ) );
+
+										?>
+									</th>
+									<td>
+										<?php echo esc_html( orbis_time( $time ) ); ?>
+									</td>
+								</tr>
+
+							<?php endforeach; ?>
+
+						</tbody>
+					</table>
+
+					<br />
+
+					<?php if ( $total_in_period > $subscription->time_per_year ) : ?>
+
+						We hebben in de afgelopen periode meer support uren geregistreerd dan beschikbaar zijn binnen het 
+						<a href="https://www.pronamic.nl/wordpress/wordpress-onderhoud/">WordPress onderhoud en support</a> 
+						abonnement. Om je te kunnen helpen willen we je vragen om een 
+						<a href="https://www.pronamic.nl/strippenkaarten/">strippenkaart</a> te bestellen of je abonnement
+						te upgraden.<br />
+
+						<br />
+
+					<?php endif; ?>
+
+					Met vriendelijke groet,<br />
+					Pronamic
+				</div>
+
+			</div>
+
+			<div class="card-footer">
+				<button type="button" class="btn btn-secondary btn-sm orbis-copy" data-clipboard-target="#helpscout-auto-reply-message"><i class="fas fa-paste"></i> Kopieer HTML-bericht</button>
+			</div>
+
+		</div>
 	</div>
 </div>
 
