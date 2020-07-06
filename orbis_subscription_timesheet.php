@@ -41,6 +41,7 @@ $start->modify( '+' . $difference->y . ' year' );
 
 $end = new \Pronamic\WordPress\DateTime\DateTime();
 $end->setDate( $end->format( 'Y' ), $end->format( 'n' ), $start->format( 'd' ) );
+$end->setTime( 23, 59, 59 );
 
 $end = ( $current_date > $end ) ? $current_date : $end;
 
