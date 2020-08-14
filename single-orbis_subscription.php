@@ -48,8 +48,18 @@
 							<dt><?php _e( 'Posted by', 'orbis_pronamic' ); ?></dt>
 							<dd><?php echo get_the_author(); ?></dd>
 
-							<dt><?php _e( 'Actions', 'orbis_pronamic' ); ?></dt>
-							<dd><?php edit_post_link( __( 'Edit', 'orbis_pronamic' ) ); ?></dd>
+							<?php
+
+							$edit_post_link = get_edit_post_link();
+
+							if ( null !== $edit_post_link ) :
+
+							?>
+
+								<dt><?php _e( 'Actions', 'orbis_pronamic' ); ?></dt>
+								<dd><?php edit_post_link( __( 'Edit', 'orbis_pronamic' ) ); ?></dd>
+
+							<?php endif; ?>
 						</dl>
 					</div>
 				</div>
