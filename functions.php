@@ -71,7 +71,7 @@ add_action( 'orbis_after_main_content', function() {
 		'orbis_subscription' => 'orbis_subscription_timesheet',
 	);
 
-	if ( ! is_singular( $post_types ) ) {
+	if ( ! is_singular( array_keys( $post_types ) ) ) {
 		return;
 	}
 
