@@ -63,12 +63,21 @@ function orbis_woocommerce_grid() {
 add_action( 'template_redirect', 'orbis_woocommerce_grid' );
 
 /**
- * Project timesheets.
+ * Timesheets after main content.
  */
 add_action( 'orbis_after_main_content', function() {
-	if ( ! is_singular( 'orbis_project' ) ) {
+	$post_types = array(
+		'orbis_project'      => 'orbis_project_timesheet',
+		'orbis_subscription' => 'orbis_subscription_timesheet',
+	);
+
+	if ( ! is_singular( array_keys( $post_types ) ) ) {
 		return;
 	}
 
-	get_template_part( 'orbis_project_timesheet' );
+	$post_type = get_post_type();
+
+	if ( array_key_exists( $post_type, $post_types ) ) {
+		get_template_part( $post_types[ $post_type ] );
+	}
 } );
