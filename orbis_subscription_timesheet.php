@@ -125,8 +125,7 @@ $total_in_period = array_sum( wp_list_pluck( $data, 'number_seconds' ) );
 
 					$search_url = \add_query_arg(
 						array(
-							'orbis_project_client_id' => $company_post_id,
-							's'                       => 'strippenkaart',
+							's' => 'strippenkaart ' . $subscription->name,
 						),
 						\get_post_type_archive_link( 'orbis_project' )
 					);
