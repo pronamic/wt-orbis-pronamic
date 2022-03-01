@@ -81,3 +81,76 @@ add_action( 'orbis_after_main_content', function() {
 		get_template_part( $post_types[ $post_type ] );
 	}
 } );
+
+add_action( 'orbis_before_side_content', function() {
+	if ( ! is_singular( 'orbis_company' ) ) {
+		return;
+	}
+
+	$post = get_post();
+
+	?>
+	<div class="card mb-3">
+		<div class="card-header"><?php esc_html_e( 'Agreement Form', 'orbis' ); ?></div>
+
+		<div class="list-group">
+			<?php
+
+			$post = get_post();
+
+			$args = array(
+				'bedrijf'        => get_the_title( $post ),
+				'kvk-nummer'     => get_post_meta( $post->ID, '_orbis_kvk_number', true ),
+				'btw-nummer'     => get_post_meta( $post->ID, '_orbis_vat_number', true ),
+				'voornaam'       => '',
+				'achternaam'     => '',
+				'straat'         => get_post_meta( $post->ID, '_orbis_address', true ),
+				'postcode'       => get_post_meta( $post->ID, '_orbis_postcode', true ),
+				'plaats'         => get_post_meta( $post->ID, '_orbis_city', true ),
+				'factuur-e-mail' => get_post_meta( $post->ID, '_orbis_invoice_email', true ),
+				'referentie'     => '',
+				'eenmalig'       => '0',
+				'jaarlijks'      => '0',
+				'maandelijks'    => '0',
+			);
+
+			$url_agreement_form = 'https://www.pronamic.nl/akkoord/';
+
+			$url_agreement_form = add_query_arg( $args, $url_agreement_form );
+
+			$products = array(
+				(object) array(
+					'name'  => 'Strippenkaart 2 uren',
+					'price' => '190',
+				),
+				(object) array(
+					'name'  => 'Strippenkaart 5 uren',
+					'price' => '450',
+				),
+				(object) array(
+					'name'  => 'Strippenkaart 10 uren',
+					'price' => '850',
+				),
+			);
+
+			foreach ( $products as $product ) {
+				$url = add_query_arg(
+					array(
+						'referentie' => $product->name,
+						'eenmalig'   => $product->price,
+					),
+					$url_agreement_form
+				);
+
+				printf(
+					'<a href="%s" class="list-group-item list-group-item-action">%s</a>',
+					esc_url( $url ),
+					esc_html( $product->name )
+				);
+			}
+
+			?>
+		</div>
+	</div>
+	<?php
+} );
