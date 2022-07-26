@@ -116,7 +116,7 @@ add_action( 'orbis_before_side_content', function() {
 
 			$url_agreement_form = 'https://www.pronamic.nl/akkoord/';
 
-			$url_agreement_form = add_query_arg( $args, $url_agreement_form );
+			$url_agreement_form = add_query_arg( urlencode_deep( $args ), $url_agreement_form );
 
 			$products = array(
 				(object) array(
@@ -135,9 +135,11 @@ add_action( 'orbis_before_side_content', function() {
 
 			foreach ( $products as $product ) {
 				$url = add_query_arg(
-					array(
-						'referentie' => $product->name,
-						'eenmalig'   => $product->price,
+					urlencode_deep(
+						array(
+							'referentie' => $product->name,
+							'eenmalig'   => $product->price,
+						)
 					),
 					$url_agreement_form
 				);
